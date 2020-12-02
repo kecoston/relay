@@ -1,17 +1,20 @@
-const mongoose = require("mongoose);
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 
 const activitiesSchema = new mongoose.Schema({
     time: {
-        type:
-        
+        type: String,
+        required: true
     },
-    intervals: {
+    interval: {
+        type: String,
+        required: true
 
     },
     selectedContact: {
-
+        type: String, 
+        required: true
     }
 
 
