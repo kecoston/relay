@@ -1,5 +1,5 @@
 import './App.css';
-import UserForm from './components/UserLogin/user'
+import Signup from './components/Signup/Signup'
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
 
       </header>
-      <UserForm />
+      <Signup />
     </div>
   );
 }
