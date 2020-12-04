@@ -1,5 +1,6 @@
 module.exports = {
     Activities: require("./activitiesModel"),
-    Contacts: require("./contactModel")
+    Contacts: require("./contactModel"),
+    User: require("./userModel")
   };
   
