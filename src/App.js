@@ -1,4 +1,5 @@
 import './App.css';
+import UserForm from './components/UserLogin/user'
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <header className="App-header">
 
       </header>
+      <UserForm />
     </div>
   );
 }
