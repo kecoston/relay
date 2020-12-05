@@ -32,6 +32,13 @@ const activitySeeds = [
   }
 ];
 
+const userSeeds = [
+  {
+    userName: "kecoston",
+    password: "testing123"
+  }
+]
+
 
 db.Contacts.remove({})
   .then(() => db.Contacts.collection.insertMany(contactSeeds))
@@ -46,6 +53,18 @@ db.Contacts.remove({})
 
 db.Activities.remove({})
   .then(() => db.Activities.collection.insertMany(activitySeeds))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+
+  db.User.remove({})
+  .then(() => db.User.collection.insertMany(userSeeds))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
