@@ -1,5 +1,5 @@
 module.exports = {
-    Activities: require("./activitiesModel"),
+    Activities: require("./activitesModel"),
     Contacts: require("./contactModel"),
     User: require("./userModel")
   };
