@@ -24,6 +24,7 @@
     "bootstrap": "^4.5.3",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
-    "mongoose": "^5.11.4"
+    "mongoose": "^5.11.4",
+    "react-geolocated": "^3.1.0"
   }
 }
