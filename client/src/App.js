@@ -1,14 +1,14 @@
 import React from 'react'
 import './App.css';
-import Signup from './components/Signup/Signup'
+import Jumbotron from './components/Jumbotron';
+import Nav from './components/Nav';
+//import Signup from './pages/Signup'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-
-      </header>
-      <Signup />
+    <div>
+        <Nav />
+        <Jumbotron />
     </div>
   );
 }
