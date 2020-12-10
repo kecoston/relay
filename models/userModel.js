@@ -1,3 +1,5 @@
+var bcrypt = require("bcryptjs");
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -20,10 +22,13 @@ userSchema.pre('save', function (next) {
       next()
     } else {
       console.log('models/user.js hashPassword in pre save');
-      this.password = this.hashPassword(this.password)
+      // this.password = this.hashPassword(this.password)
+      this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10), null);
+
       next()
     }
   })
+
 
 const User = mongoose.model("User", userSchema);
 module.exports = User   

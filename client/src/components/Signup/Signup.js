@@ -12,9 +12,9 @@ class Signup extends Component {
 		let value = event.target.value;
 		const name = event.target.name;
 
-		if (name === "password") {
-			value = value.substring(0,15);
-		}
+		// if (name === "password") {
+		// 	value = value.substring(0,15);
+		// }
 
 		this.setState({
 			[name]: value 
@@ -24,15 +24,9 @@ class Signup extends Component {
 		
 		event.preventDefault();
 		
-		this.setState({
-			userName: "",
-			password: ""
-		});
-
-
 		//request to server to add a new username/password
 		axios.post('/user/', {
-			username: this.state.username,
+			userName: this.state.userName,
 			password: this.state.password
 		})
 			.then(response => {
@@ -41,6 +35,7 @@ class Signup extends Component {
 					console.log('successful signup')
 					this.setState({ //redirect to login page
 						redirectTo: '/login'
+						
 					})
 				} else {
 					console.log('username already taken')
