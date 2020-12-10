@@ -13,7 +13,7 @@ const apiRoutes = require("./routes/api");
 app.use(
 	session({
 		secret: 'random', //pick a random string to make the hash that is generated secure
-		store: new MongoStore({ mongooseConnection: dbConnection }),
+		// store: new MongoStore({ mongooseConnection: dbConnection }),
 		resave: false, //required
 		saveUninitialized: false //required
 	})
@@ -38,7 +38,7 @@ mongoose.connect(
   );
   
   // Use apiRoutes
-  app.use("./routes/api/user");
+  app.use(require("./routes/api/user"));
   
   // Send every request to the React app
   // Define any API routes before this runs
