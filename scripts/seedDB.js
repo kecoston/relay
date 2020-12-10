@@ -39,7 +39,6 @@ const userSeeds = [
   }
 ]
 
-
 db.Contacts.remove({})
   .then(() => db.Contacts.collection.insertMany(contactSeeds))
   .then(data => {
