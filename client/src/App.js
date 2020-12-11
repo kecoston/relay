@@ -1,15 +1,21 @@
 import React from 'react'
+//import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import Jumbotron from './components/Jumbotron';
 import Nav from './components/Nav';
-import Geolocate from "./components/Geolocation/Geolocation"
+
+import Signup from './components/Signup/Signup'
+
 
 function App() {
   return (
     <div>
         <Nav />
         <Jumbotron />
-        <Geolocate />
+
+
+        <Signup />
+
     </div>
   );
 }
