@@ -1,24 +1,25 @@
-import React from 'react'
-//import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import './App.css';
-import Jumbotron from './components/Jumbotron';
-import Nav from './components/Nav';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Signup from './components/Signup/Signup'
-
-
-console.log(process.env.REACT_APP_GOOGLE_API)
-function App() {
-  return (
-    <div>
-        <Nav />
-        <Jumbotron />
+import Landing from "./pages/Landing";
+import Signup from "./components/Signup/Signup"
+import Dashboard from "./pages/Dashboard";
+import Workout from "./pages/Workout";
 
 
-        <Signup />
+class App extends Component {
+  render() {
+    return (
+        <Router>
+          <div className="App">
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/user" component={Signup} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/workout" component={Workout} />
+          </div>
+        </Router>
+    );
+  }
 
-    </div>
-  );
 }
-
 export default App;
