@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOpenRoundedIcon from '@material-ui/icons/LockOpenRounded';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+//import logo from "./relaylogo2.png";
 
 function Copyright() {
   return (
@@ -28,9 +29,6 @@ function Copyright() {
 const styles = theme => ({
   root: {
     height: '100vh',
-  },
-  image: {
-    
   },
   paper: {
     margin: theme.spacing(8, 4),
