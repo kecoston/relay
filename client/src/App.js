@@ -1,8 +1,11 @@
 import React from 'react'
+//import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import Jumbotron from './components/Jumbotron';
 import Nav from './components/Nav';
-import Geolocate from "./components/Geolocation/Geolocation"
+
+import Signup from './components/Signup/Signup'
+
 
 console.log(process.env.REACT_APP_GOOGLE_API)
 function App() {
@@ -10,7 +13,10 @@ function App() {
     <div>
         <Nav />
         <Jumbotron />
-        <Geolocate />
+
+
+        <Signup />
+
     </div>
   );
 }
