@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Nav from "../components/Nav";
 import Jumbotron from "../components/Jumbotron";
 import { Row, Col, Container } from "../components/Grid";
-import { StartBtn, UserBtns } from "../components/Buttons";
+import { StartBtn } from "../components/Buttons";
 
 export default class Dashboard extends Component {
     render() {
@@ -11,33 +11,11 @@ export default class Dashboard extends Component {
                 <Nav />
                 <Container>
                     <Row>
-                        <Col size="lg-3"></Col>
-                        <Col size="lg-6">
-                            <br />
-                            <div className="card">
-                                <div className="card-header">
-                                    User
-                                </div>
-                                <div className="card-body">
-                                    <h5 className="card-title">Special title treatment</h5>
-                                    <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <hr />
-                                    <UserBtns />
-                                </div>
-                            </div>
-                            <br />
-                        </Col>
                         <Col size="lg-3">
-                            
-                        </Col>
-                    </Row>
-                    <hr />
-                    <Row>
-                        <Col size="lg-3">
-
+                        
                         </Col>
                         <Col size="lg-6">
-                            <Jumbotron>
+                        <Jumbotron>
                                 <h3>Log Workout</h3>
                                 <hr />
                                 <p>(Workout form goes here)</p>
@@ -46,7 +24,7 @@ export default class Dashboard extends Component {
                             </Jumbotron>
                         </Col>
                         <Col size="lg-3">
-
+                            
                         </Col>
                     </Row>
 
