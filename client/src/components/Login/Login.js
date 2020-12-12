@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios'
-import Jumbotron from "../Jumbotron"
 
-class Signup extends Component {
+class Login extends Component {
 	
 	state = {
 		userName: "",
@@ -51,9 +50,9 @@ class Signup extends Component {
     render() {
 
         return (
-        <form className="container">  
+        <form className="container">
+            <p></p>  
             <div className="form-group">
-                <p>Please enter your details below to create an accout</p>
                 <input 
                     value={this.state.userName}
                     name="userName"
@@ -76,7 +75,7 @@ class Signup extends Component {
                   <button 
                     className="btn btn-primary"
                     onClick={this.handFormSubmit}>
-					Submit
+					Log In
 				  </button>
             </div>
         </form>
@@ -85,4 +84,4 @@ class Signup extends Component {
     }
 }
 
-export default Signup
+export default Login
