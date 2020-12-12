@@ -13,6 +13,7 @@ class Geolocate extends React.Component {
         };
         this.getLocation = this.getLocation.bind(this);
         this.getCoordinates = this.getCoordinates.bind(this)
+        this.reverseGeocodeCoordinates = this.reverseGeocodeCoordinates.bind(this)
     }
 
     getLocation() {
@@ -30,6 +31,17 @@ class Geolocate extends React.Component {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
         })
+        
+        this.reverseGeocodeCoordinates();
+    }
+
+    reverseGeocodeCoordinates() {
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&sensor=false&key=${GOOGLE_API_KEY}`)
+        .then(response => response.json())
+        .then(data => this.setState({
+            userAddress: data.results[0].formatted_address,
+        }))
+        .catch(error => alert(error))
     }
 
     handleLocationError(error) {
@@ -65,7 +77,7 @@ class Geolocate extends React.Component {
                 <p>Address: {this.state.userAddress}</p>
                 {
                     this.state.latitude && this.state.longitude ?
-                    <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${this.state.latitude}${this.state.longitude}&zoom=14&size=400x300&sensor=false&key=${GOOGLE_API_KEY}`} alt="google-maps"/>
+                    <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${this.state.latitude},${this.state.longitude}&zoom=14&size=400x300&sensor=false&markers=color:red%7C${this.state.latitude},${this.state.longitude}&key=${GOOGLE_API_KEY}`} alt="google-maps"/>
                     : 
                     null
                 }
@@ -75,3 +87,9 @@ class Geolocate extends React.Component {
 }
 
 export default Geolocate
+
+
+
+
+
+
