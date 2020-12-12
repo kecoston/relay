@@ -1,3 +1,4 @@
+const { SportsKabaddiTwoTone } = require("@material-ui/icons");
 const mongoose = require("mongoose");
 const db = require("../models/")
 
@@ -34,7 +35,9 @@ const activitySeeds = [
 
 const userSeeds = [
   {
-    userName: "kecoston",
+    firstName: "Katie",
+    lastName: "Coston",
+    email: "kecoston",
     password: "testing123"
   }
 ]

@@ -48,7 +48,9 @@ const styles = theme => ({
 class Signup extends Component {
 
 	state = {
-		userName: "",
+		firstName: "",
+		lastName: "",
+		email: "",
 		password: "",
 	};
 
@@ -70,7 +72,9 @@ class Signup extends Component {
 		
 		//request to server to add a new username/password
 		axios.post('/user/', {
-			userName: this.state.userName,
+			firstName: this.state.firstName,
+			lastName: this.state.lastName,
+			email: this.state.email,
 			password: this.state.password
 		})
 			.then(response => {
@@ -106,16 +110,42 @@ class Signup extends Component {
 				  Sign Up
 				</Typography>
 				<form className={classes.form} noValidate>
-				  <Grid container spacing={2}>
+				  <Grid container spacing={4}>
+				  <Grid item xs={12}>
+					  <TextField
+						variant="outlined"
+						required
+						fullWidth
+						name="firstName"
+						label="firstName"
+						type="firstName"
+						id="firstName"
+						autoComplete="first-name"
+						onChange={this.handleInputChange}
+						/>
+					</Grid>
 					<Grid item xs={12}>
 					  <TextField
 						variant="outlined"
 						required
 						fullWidth
-						id="userName"
-						label="Create a username"
-						name="userName"
-						autoComplete="username"
+						name="lastName"
+						label="lastName"
+						type="lastName"
+						id="lastName"
+						autoComplete="last-name"
+						onChange={this.handleInputChange}
+						/>
+					</Grid>
+					<Grid item xs={12}>
+					  <TextField
+						variant="outlined"
+						required
+						fullWidth
+						id="email"
+						label="Email"
+						name="email"
+						autoComplete="email"
 						onChange={this.handleInputChange}
 					  />
 					</Grid>
