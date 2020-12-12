@@ -48,9 +48,7 @@ const styles = theme => ({
 class Signup extends Component {
 
 	state = {
-		firstName: "",
-		lastName: "",
-		email: "",
+		userName: "",
 		password: "",
 	};
 
@@ -72,9 +70,7 @@ class Signup extends Component {
 		
 		//request to server to add a new username/password
 		axios.post('/user/', {
-			firstName: this.state.firstName,
-			lastName: this.state.lastName,
-			email: this.state.email,
+			userName: this.state.userName,
 			password: this.state.password
 		})
 			.then(response => {
@@ -110,42 +106,16 @@ class Signup extends Component {
 				  Sign Up
 				</Typography>
 				<form className={classes.form} noValidate>
-				  <Grid container spacing={4}>
-				  <Grid item xs={12}>
-					  <TextField
-						variant="outlined"
-						required
-						fullWidth
-						name="firstName"
-						label="firstName"
-						type="firstName"
-						id="firstName"
-						autoComplete="first-name"
-						onChange={this.handleInputChange}
-						/>
-					</Grid>
+				  <Grid container spacing={2}>
 					<Grid item xs={12}>
 					  <TextField
 						variant="outlined"
 						required
 						fullWidth
-						name="lastName"
-						label="lastName"
-						type="lastName"
-						id="lastName"
-						autoComplete="last-name"
-						onChange={this.handleInputChange}
-						/>
-					</Grid>
-					<Grid item xs={12}>
-					  <TextField
-						variant="outlined"
-						required
-						fullWidth
-						id="email"
-						label="Email"
-						name="email"
-						autoComplete="email"
+						id="userName"
+						label="Create a username"
+						name="userName"
+						autoComplete="username"
 						onChange={this.handleInputChange}
 					  />
 					</Grid>
@@ -158,7 +128,8 @@ class Signup extends Component {
 						label="Password"
 						type="password"
 						id="password"
-						autoComplete="current-password"
+						                      autoComplete="current-password"
+
 						onChange={this.handleInputChange}
 						/>
 					</Grid>
