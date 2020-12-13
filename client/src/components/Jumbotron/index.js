@@ -4,7 +4,7 @@ import "./style.css";
 function Jumbotron({ children }) {
   return (
     <div
-      className="jumbotron"
+      className="jumbotron" style={{background: "transparent"}}
     >
       {children}
     </div>
