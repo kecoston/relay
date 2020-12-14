@@ -23,7 +23,6 @@ export default class Dashboard extends Component {
                             
                         </Col>
                     </Row>
-
                 </Container>
             </div>
         )
