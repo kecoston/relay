@@ -4,6 +4,7 @@ import { Row, Col, Container } from "../components/Grid";
 import { DashBtns } from "../components/Buttons";
 import Timer from "../components/Timer";
 
+
 export default class Workout extends Component {
     render() {
         return (
@@ -20,6 +21,7 @@ export default class Workout extends Component {
                                 <hr />
                                 <DashBtns />
                             </Jumbotron>
+                        
                         </Col>
                         <Col size="lg-6">
                            

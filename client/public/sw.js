@@ -6,6 +6,9 @@ const FILES_TO_CACHE = [
     '/static/media/relaylogo.21061732.png',    
     '/static/js/main.chunk.js',
     '/index.html',
+    '/dashboard',
+    '/user',
+    '/workout',
     '/'
 ]
 const CACHE_NAME = 'static-cache-relay';
@@ -45,7 +48,6 @@ self.addEventListener('activate', (event) => {
 
 // Cache and return requests
 self.addEventListener('fetch', (event) => {
-
   if (event.request.url.includes("/api/")) {
     event.respondWith(
       caches.open(DATA_CACHE_NAME).then(cache => {
