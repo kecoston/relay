@@ -1,54 +1,72 @@
-var CACHE_NAME = 'pwa-relay';
+const FILES_TO_CACHE = [
+    'manifest.json',
+    '/images/icons-512.png',
+    'static/js/bundle.js',
+    '/static/js/0.chunk.js',
+    '/static/media/relaylogo.21061732.png',    
+    '/static/js/main.chunk.js',
+    '/index.html',
+    '/'
+]
+const CACHE_NAME = 'static-cache-relay';
+const DATA_CACHE_NAME = "data-cache-relay"
 
 // Install a service worker
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
   // Perform install steps
   event.waitUntil(
-    caches.open(CACHE_NAME)
-    .then(function(cache) {
-        
-        console.log('Opened cache');
-       
-        return cache.addAll([
-          'manifest.json',
-          '/images/icons-512.png',
-          'static/js/bundle.js',
-          '/static/js/0.chunk.js',
-          '/static/js/main.chunk.js',
-          '/index.html',
-          '/'
-          ]);
+    caches.open(CACHE_NAME).then(cache => {
+        console.log('Your files were pre-cached');
+        return cache.addAll(FILES_TO_CACHE);
       })
   );
+
+  self.skipWaiting();
+
+});
+
+// Update a service worker
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then(keyList => {
+      return Promise.all(
+        keyList.map(key => {
+          if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
+            console.log("Removing old cache data", key);
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
+
+  self.clients.claim()
 });
 
 // Cache and return requests
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      }
-    )
-  );
-});
 
-// Update a service worker
-self.addEventListener('activate', event => {
-  var cacheWhitelist = ['pwa-relay'];
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
+  if (event.request.url.includes("/api/")) {
+    event.respondWith(
+      caches.open(DATA_CACHE_NAME).then(cache => {
+        return fetch(event.request)
+        .then(response => {
+          if (response.status === 200) {
+            cache.put(event.request.url, response.clone());
           }
+          return response;
         })
-      );
+        .catch(err => {
+          return cache.match(event.request);
+        });
+      }).catch(err => console.log(err))
+    );
+    return;
+  }
+
+  event.respondWith(
+    caches.match(event.request).then(function(response) {
+      return response || fetch(event.request);
     })
   );
 });
