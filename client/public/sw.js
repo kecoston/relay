@@ -8,25 +8,22 @@ self.addEventListener('install', event => {
     .then(function(cache) {
         
         console.log('Opened cache');
-        console.log(cache)
        
         return cache.addAll([
-            '/static/main.chunk.js',
-            '/static/0.chunk.js',
-            '/static/bundle.js',
-            '/dashboard.js',
-            '/user.js',
-            '/workout.js',
-            '/index.js',
-            '/'
-          
+          'manifest.json',
+          '/images/icons-512.png',
+          'static/js/bundle.js',
+          '/static/js/0.chunk.js',
+          '/static/js/main.chunk.js',
+          '/index.html',
+          '/'
           ]);
       })
   );
 });
 
 // Cache and return requests
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
