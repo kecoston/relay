@@ -19,8 +19,7 @@ export default function serviceWorkerDev() {
       const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
    
 
-    let swUrl= `${process.env.PUBLIC_URL}/sw.js`
-    navigator.serviceWorker.register(swUrl).then((response) => {
+    navigator.serviceWorker.register("./sw.js").then((response) => {
         console.log("response", response)
       return response.pushManager.getSubscription({
           userVisibleOnly: true,
