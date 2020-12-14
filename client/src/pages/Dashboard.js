@@ -28,6 +28,7 @@ export default class Dashboard extends Component {
 
                         </Col>
                     </Row>
+
                     <hr />
                     <Row>
                     <h3 style={{textAlign: "center"}}>How It Works</h3>
@@ -58,6 +59,7 @@ export default class Dashboard extends Component {
                         <Col size="lg-3"></Col>
                     </Row>
                     <hr />
+
                 </Container>
             </div>
         )
