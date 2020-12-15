@@ -5,9 +5,12 @@ import Signup from "./components/Signup/Signup"
 import Dashboard from "./pages/Dashboard";
 import Workout from "./pages/Workout";
 
+
+
 class App extends Component {
 
 
+ 
   render() {
     return (
         <Router>

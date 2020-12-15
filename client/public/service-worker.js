@@ -1,4 +1,3 @@
-importScripts("https://js.pusher.com/beams/service-worker.js");
 
 const FILES_TO_CACHE = [
     'manifest.json',
