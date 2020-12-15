@@ -4,8 +4,22 @@ import Landing from "./pages/Landing";
 import Signup from "./components/Signup/Signup"
 import Dashboard from "./pages/Dashboard";
 import Workout from "./pages/Workout";
+import FireComponenet from './components/Firebase/Firebase'
 
 class App extends Component {
+
+  componentDidMount () {
+    const message = FireComponenet.messaging();
+    console.log(message)
+
+    message.requestPermission()
+    .then(() => {
+      return message.getToken();
+    }).then((data) => {
+      console.log('token', data)
+    })
+  }
+
   render() {
     return (
         <Router>
