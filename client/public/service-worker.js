@@ -1,3 +1,5 @@
+
+
 const FILES_TO_CACHE = [
     'manifest.json',
     '/images/icons-512.png',
@@ -6,9 +8,6 @@ const FILES_TO_CACHE = [
     '/static/media/relaylogo.21061732.png',    
     '/static/js/main.chunk.js',
     '/index.html',
-    '/dashboard',
-    '/user',
-    '/workout',
     '/'
 ]
 const CACHE_NAME = 'static-cache-relay';

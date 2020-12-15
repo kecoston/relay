@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import swDev from "./swDev"
+import register from "./registerServiceWorker";
 
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
-swDev();
+register();
