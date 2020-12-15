@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const session = require('express-session')
-const MongoStore = require('connect-mongo')(session)
 const passport = require('./passport');
 const dbConnection = require("./models")
 
@@ -10,14 +9,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const apiRoutes = require("./routes/api");
 
-app.use(
-	session({
-		secret: 'random', //pick a random string to make the hash that is generated secure
-		// store: new MongoStore({ mongooseConnection: dbConnection }),
-		resave: false, //required
-		saveUninitialized: false //required
-	})
-)
+
 
 // Passport
 app.use(passport.initialize())
