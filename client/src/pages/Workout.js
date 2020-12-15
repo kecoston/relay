@@ -3,7 +3,8 @@ import Jumbotron from "../components/Jumbotron";
 import { Row, Col, Container } from "../components/Grid";
 import { DashBtns } from "../components/Buttons";
 import Timer from "../components/Timer";
-
+import ReactNotification from 'react-notifications-component'
+import StartNotification from '../components/StartNotification'
 
 export default class Workout extends Component {
     render() {
@@ -15,6 +16,8 @@ export default class Workout extends Component {
                            
                         </Col>
                         <Col size="lg-6">
+                            <ReactNotification/>
+                            <StartNotification/>
                             <Jumbotron>
                                 <hr />
                                 <Timer />
