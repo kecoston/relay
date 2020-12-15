@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Activity from '../Activity/Activity'
 
 import "./style.css";
 
@@ -32,9 +33,7 @@ export default function LogWorkout() {
           </Typography>
           <hr />
           <Typography variant="body2" color="textSecondary" component="p">
-            blah
-            blah
-            blah
+           <Activity />
           </Typography>
         </CardContent>
       </CardActionArea>
