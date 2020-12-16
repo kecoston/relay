@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import { Row, Col, Container } from "../components/Grid";
-import { DashBtns } from "../components/Buttons";
+import TimerBtn from "../components/TimerBtn";
 import Timer from "../components/Timer";
+
+
 
 export default class Workout extends Component {
     render() {
@@ -18,7 +20,7 @@ export default class Workout extends Component {
                                 <hr />
                                 <Timer />
                                 <hr />
-                                <DashBtns />
+                                <TimerBtn />
                             </Jumbotron>
                         
                         </Col>

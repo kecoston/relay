@@ -4,8 +4,12 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import WorkoutBtn from '../WorkoutBtn'
+import "./card.css"
 
-import "./style.css";
+
+
+
 
 const useStyles = makeStyles({
   root: {
@@ -17,10 +21,10 @@ const useStyles = makeStyles({
     marginRight: -40,
     borderRadius: 20,
     boxShadow: '0 3px 5px 2px rgba(75, 73, 73, 0.4)'
-  },
+  }
 });
 
-export default function Location() {
+export default function BeginWorkout() {
   const classes = useStyles();
 
   return (
@@ -28,14 +32,10 @@ export default function Location() {
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="span" style={{color: "#58585F", letterSpacing: 1.5}}>
-            Location Services
+            Start your Workout
           </Typography>
           <hr />
-          <Typography variant="body2" color="textSecondary" component="span">
-            blah
-            blah
-            blah
-          </Typography>
+          <WorkoutBtn />
         </CardContent>
       </CardActionArea>
     </Card>

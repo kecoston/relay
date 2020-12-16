@@ -8,7 +8,6 @@ import Contact from '../Contact/Contact'
 import API from '../../utils/API'
 import TransitionsModal from "../Modal"
 
-import "./style.css";
 
 const useStyles = makeStyles({
   root: {
