@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Contact from '../Contact/Contact'
 import API from '../../utils/API'
 
-import "./style.css";
 
 const useStyles = makeStyles({
   root: {

@@ -6,7 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Activity from '../Activity/Activity'
 import API from "../../utils/API"
-import "./style.css";
 
 const useStyles = makeStyles({
   root: {
