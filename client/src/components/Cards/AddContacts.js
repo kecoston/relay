@@ -6,13 +6,14 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Contact from '../Contact/Contact'
 import API from '../../utils/API'
+import TransitionsModal from "../Modal"
 
 import "./style.css";
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    height: 300,
+    height: "auto",
     padding: 20,
     textAlign: "center",
     marginTop: -60,
@@ -68,6 +69,7 @@ export default function AddContacts() {
           </Typography>
         </CardContent>
       </CardActionArea>
+      <TransitionsModal />
     </Card>
     
   );
