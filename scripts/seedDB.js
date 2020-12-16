@@ -21,11 +21,13 @@ const contactSeeds = [
 
 const activitySeeds = [
   {
+    title: "After Lunch Walk",
     time: "00:30:00",
     interval: "00:10:00",
     selectedContact: "Katie Coston"
   },
   {
+    title: "Morning Run",
     time: "01:30:00",
     interval: "00:10:00",
     selectedContact: "Katie Coston"

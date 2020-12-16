@@ -38,6 +38,7 @@ export default function LogWorkout() {
   };
 
   return (
+
     <Card className={classes.root}>
       <CardActionArea>
         <CardContent>
@@ -54,6 +55,7 @@ export default function LogWorkout() {
               return (
                 <Activity 
                 key={workout._id}
+                title={workout.title}
                 date={workout.date}
                 time={workout.time}
                 interval={workout.interval}

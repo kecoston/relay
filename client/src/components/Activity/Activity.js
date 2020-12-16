@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Activity({
-  key,
+  title,
   date,
   time,
   interval,
@@ -73,7 +73,7 @@ export default function Activity({
                   <DirectionsRunIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Workout Title"secondary= {date}/>
+              <ListItemText primary= {title} secondary= {date}/>
             </ListItem>
           </List>
         </AccordionSummary>
