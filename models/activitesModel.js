@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 
 const activitiesSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true 
+    },
     time: {
         type: String,
         required: true
@@ -11,6 +15,10 @@ const activitiesSchema = new mongoose.Schema({
         type: String,
         required: true
 
+    },
+    date: { 
+        type: Date, 
+        default: Date.now 
     },
     selectedContact: {
         type: String, 
