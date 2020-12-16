@@ -4,7 +4,7 @@ const contactsController = require("../../controllers/contactsControllers");
 
 router.route("/")
     .get(contactsController.findAll)
-    .post(booksController.create);
+    .post(contactsController.create);
 
 router 
     .route("/:id")
