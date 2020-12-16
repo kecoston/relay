@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Activity from '../Activity/Activity'
-
+import API from "../../utils/API"
 import "./style.css";
 
 const useStyles = makeStyles({
@@ -23,6 +23,20 @@ const useStyles = makeStyles({
 export default function LogWorkout() {
   const classes = useStyles();
 
+  const [workouts, setWorkouts] = useState("");
+
+  useEffect(() => {
+    loadWorkouts()
+  }, []);
+
+
+  function loadWorkouts() {
+    API.getActivities()
+    .then(res => 
+      setWorkouts(res.data)
+      ).catch(err => console.log(err));
+  };
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -32,7 +46,24 @@ export default function LogWorkout() {
           </Typography>
           <hr />
           <Typography variant="body2" color="textSecondary" component="span">
-           <Activity />
+           {!workouts ? (
+             <h1>No Workouts Logged</h1>
+           ) : (
+          <div>
+            {workouts.map(workout => {
+              return (
+                <Activity 
+                key={workout._id}
+                date={workout.date}
+                time={workout.time}
+                interval={workout.interval}
+                selectedContact={workout.selectedContact}
+                />
+              );
+            })}
+          </div>
+           )}
+           
           </Typography>
         </CardContent>
       </CardActionArea>

@@ -40,7 +40,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function InsetDividers() {
+export default function Activity({
+  key,
+  date,
+  time,
+  interval,
+  selectedContact
+}) {
   const classes = useStyles();
 
   const [expanded, setExpanded] = React.useState(false);
@@ -67,16 +73,14 @@ export default function InsetDividers() {
                   <DirectionsRunIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Workout 7" secondary="Jan 9, 2014" />
+              <ListItemText primary="Workout Title"secondary= {date}/>
             </ListItem>
           </List>
-
-          <Typography className={classes.secondaryHeading}></Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            On January 9, 2014 you went for a 30 minute run and set Steven as
-            your emergency contact. You had messages sent to him every 10 mins.
+            On {date} you went for a {time} run and set {selectedContact} as
+            your emergency contact. You had messages sent to them every {interval}.
           </Typography>
         </AccordionDetails>
       </Accordion>
