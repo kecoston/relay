@@ -7,6 +7,7 @@ import LogWorkout  from "../components/Cards/LogWorkout";
 import AddContacts from "../components/Cards/AddContacts";
 import BeginWorkout from "../components/Cards/BeginWorkout";
 
+
 export default class Dashboard extends Component {
 
     render() {
@@ -31,24 +32,29 @@ export default class Dashboard extends Component {
 
                     <hr />
                     <Row>
-                    <h3 style={{textAlign: "center"}}>How It Works</h3>
-
+                        <Col size="lg-2" />
                         <Col size="lg-4">
 
                             <Jumbotron>
+                                <br />
                                 <LogWorkout />
+                                <br />
                             </Jumbotron>
                         </Col>
                         <Col size="lg-4">
                             <Jumbotron>
+                                <br />
                                 <AddContacts />
+                                <br />
                             </Jumbotron>
                         </Col>
+
                         <Col size="lg-4">
                             <Jumbotron>
                                 <BeginWorkout />
                             </Jumbotron>
                         </Col>
+
                     </Row>
                     <hr />
                     <Row>
