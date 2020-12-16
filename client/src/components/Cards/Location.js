@@ -27,11 +27,11 @@ export default function Location() {
     <Card className={classes.root}>
       <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2" style={{color: "#58585F", letterSpacing: 1.5}}>
+          <Typography gutterBottom variant="h5" component="span" style={{color: "#58585F", letterSpacing: 1.5}}>
             Location Services
           </Typography>
           <hr />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="textSecondary" component="span">
             blah
             blah
             blah
