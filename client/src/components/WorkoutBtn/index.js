@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { makeStyles } from "@material-ui/core/styles";
+
+
 import Button from "@material-ui/core/Button";
+
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { makeStyles } from "@material-ui/core/styles";
+
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
+
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
+
+import API from '../../utils/API'
+
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -25,13 +36,29 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function AlertDialog() {
+export default function WorkoutBtn() {
     const classes = useStyles();
-    const [age, setAge] = React.useState("");
+
+    const [time, setTime] = React.useState("");
+    const [contacts, setContacts] = React.useState("");
     const [open, setOpen] = React.useState(false);
 
+
+    useEffect(() => {
+        loadContacts()
+    }, []);
+
+    function loadContacts() {
+        API.getContacts()
+            .then(res =>
+                setContacts(res.data)
+            )
+            .catch(err => console.log(err));
+    };
+
+
     const handleChange = (event) => {
-        setAge(event.target.value);
+        setTime(event.target.value);
     };
 
     const handleClickOpen = () => {
@@ -42,7 +69,18 @@ export default function AlertDialog() {
         setOpen(false);
     };
 
+    // const flatProps = {
+    //     options: contacts.map((option) => option.firstName)
+    // };
+    const defaultProps = {
+        options: contacts,
+        getOptionLabel: (option) => option.firstName + "" +  option.lastName,
+      };
+
+
+
     return (
+
         <div>
             <Button variant="contained" onClick={handleClickOpen}>
                 Begin Your Workout
@@ -77,35 +115,35 @@ export default function AlertDialog() {
 
                         <FormControl item xs={4} className={classes.formControl}>
                             <InputLabel id="demo-simple-select-label">
-                                Select Contact
-                </InputLabel>
+                                Select Time Interval
+                             </InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={age}
+                                value={time}
                                 onChange={handleChange}
                             >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
+                                <MenuItem value={"00:05:00"}>00:05:00</MenuItem>
+                                <MenuItem value={"00:10:00"}>00:10:00</MenuItem>
+                                <MenuItem value={"00:15:00"}>00:15:00</MenuItem>
+                                <MenuItem value={"00:20:00"}>00:20:00</MenuItem>
+                                <MenuItem value={"00:30:00"}>00:30:00</MenuItem>
+                                <MenuItem value={"01:00:00"}>01:00:00</MenuItem>
+
                             </Select>
+
                         </FormControl>
 
-                        <FormControl item xs={4} className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-label">
-                                Time Interval
-                </InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={age}
-                                onChange={handleChange}
-                            >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
-                            </Select>
-                        </FormControl>
+                        <Autocomplete
+                            {...defaultProps}
+                            id="Select Contact"
+                            debug
+                            renderInput={(params) => <TextField {...params} label="Select Contact" margin="normal" />}
+                        />
+
+
+
+
                     </DialogContentText>
 
                     <DialogActions >
