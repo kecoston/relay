@@ -11,7 +11,6 @@ import "./style.css";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    height: 300,
     padding: 20,
     textAlign: "center",
     marginTop: -60,

@@ -31,7 +31,7 @@ export default function Contact({
             <MoodIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary= {firstName + lastName} secondary={phoneNumber} />
+        <ListItemText primary= {firstName + " " + lastName} secondary={phoneNumber} />
       </ListItem>
       <Divider variant="inset" component="li" />
     </List>
