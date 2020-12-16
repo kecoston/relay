@@ -3,11 +3,10 @@ const path = require("path");
 const mongoose = require("mongoose");
 const session = require('express-session')
 const passport = require('./passport');
-const dbConnection = require("./models")
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-const apiRoutes = require("./routes/api");
+const route = require("./routes");
 
 
 
@@ -23,15 +22,16 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+//Add routes, both API and view 
+app.use(routes)
+
 // Connect to the Mongo DB
 mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost/relay",
     { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
   );
   
-  // Use apiRoutes
-  app.use(require("./routes/api/user"));
-  
+ 
   // Send every request to the React app
   // Define any API routes before this runs
   app.get("*", function(req, res) {
