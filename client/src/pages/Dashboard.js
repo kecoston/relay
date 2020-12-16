@@ -49,20 +49,22 @@ export default class Dashboard extends Component {
                             </Jumbotron>
                         </Col>
 
-                        <Col size="lg-4">
-                            <Jumbotron>
-                                <BeginWorkout />
-                            </Jumbotron>
+                        <Col size="lg-2">
+                            
                         </Col>
 
                     </Row>
                     <hr />
                     <Row>
-                        <Col size="lg-3"></Col>
-                        <Col size="lg-6">
-                            <Jumbotron />
+                        <Col size="lg-4"></Col>
+                        <Col size="lg-4">
+                        <Jumbotron>
+                                <br />
+                                <BeginWorkout />
+                                <br />
+                            </Jumbotron>
                         </Col>
-                        <Col size="lg-3"></Col>
+                        <Col size="lg-4"></Col>
                     </Row>
                     <hr />
 
