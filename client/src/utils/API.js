@@ -6,7 +6,7 @@ export default {
     return axios.get("/api/contacts/");
   },
   // Gets the contact with the given id
-  getContacts: function (id) {
+  getContact: function (id) {
     return axios.get("/api/contacts/" + id);
   },
   // Deletes the contact with the given id
@@ -15,14 +15,14 @@ export default {
   },
   // Saves a contact to the database
   saveContact: function (contactData) {
-    return axios.post("/api/contacts/", contactData);
+    return axios.post("/api/contacts", contactData);
   },
   // Gets all activities
   getActivities: function () {
     return axios.get("/api/activities/");
   },
   // Gets the activity with the given id
-  getActivities: function (id) {
+  getActivity: function (id) {
     return axios.get("/api/activities/" + id);
   },
   // Deletes the activity with the given id
@@ -31,6 +31,6 @@ export default {
   },
   // Saves a activities to the database
   saveActivities: function (contactData) {
-    return axios.post("/api/activities/", contactData);
+    return axios.post("/api/activities", contactData);
   }
 };

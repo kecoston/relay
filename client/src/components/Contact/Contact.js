@@ -16,7 +16,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Contact() {
+export default function Contact({
+  firstName,
+  lastName,
+  phoneNumber
+}) {
   const classes = useStyles();
 
   return (
@@ -27,7 +31,7 @@ export default function Contact() {
             <MoodIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary="First Name Last Name" secondary="000 000 0000" />
+        <ListItemText primary= {firstName + lastName} secondary={phoneNumber} />
       </ListItem>
       <Divider variant="inset" component="li" />
     </List>

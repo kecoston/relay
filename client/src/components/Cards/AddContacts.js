@@ -25,21 +25,22 @@ const useStyles = makeStyles({
 export default function AddContacts() {
   const classes = useStyles();
 
-  const [contacts, setContacts] = useState([])
+  const [contacts, setContacts] = useState("");
 
   useEffect(() => {
-    loadContacts()
-  }, [])
+   loadContacts()
+  }, []);
 
   function loadContacts() {
-    API.getContacts() 
-      .then(res => 
-          setContacts(res.data)
-        )
-        .catch(err => console.log(err));
+    API.getContacts()
+    .then(res =>
+      setContacts(res.data)
+      )
+      .catch(err => console.log(err));
   };
-  
+
   return (
+
     <Card className={classes.root}>
       <CardActionArea>
         <CardContent>
@@ -48,15 +49,28 @@ export default function AddContacts() {
           </Typography>
           <hr />
           <Typography variant="body2" color="textSecondary" component="span">
-         
-          {contacts.map(contact =>{ 
-           <Contact key={contact._id} firstName={contact.firstName} lastName={contact.lastName} phoneNumber={contact.phoneNumber} />
-          })
-        }
+         {!contacts ? (
+           <h1>No Contacts to Display</h1>
+         ) : ( 
+          <div>
+          {contacts.map(contact => {
+           return (
+            <Contact 
+            key={contact._id} 
+            firstName={contact.firstName} 
+            lastName={contact.lastName} 
+            phoneNumber={contact.phoneNumber}
+            />
+           );
+         })}
+      </div> 
+       )}
           </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
+    
   );
+  
 }
 
