@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Contact from '../Contact/Contact'
+import API from '../../utils/API'
 
 import "./style.css";
 
@@ -24,6 +25,20 @@ const useStyles = makeStyles({
 export default function AddContacts() {
   const classes = useStyles();
 
+  const [contacts, setContacts] = useState([])
+
+  useEffect(() => {
+    loadContacts()
+  }, [])
+
+  function loadContacts() {
+    API.getContacts() 
+      .then(res => 
+          setContacts(res.data)
+        )
+        .catch(err => console.log(err));
+  };
+  
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -33,7 +48,11 @@ export default function AddContacts() {
           </Typography>
           <hr />
           <Typography variant="body2" color="textSecondary" component="span">
-           <Contact />
+         
+          {contacts.map(contact =>{ 
+           <Contact key={contact._id} firstName={contact.firstName} lastName={contact.lastName} phoneNumber={contact.phoneNumber} />
+          })
+        }
           </Typography>
         </CardContent>
       </CardActionArea>
