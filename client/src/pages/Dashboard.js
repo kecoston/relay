@@ -6,7 +6,7 @@ import { Row, Col, Container } from "../components/Grid";
 import LogWorkout  from "../components/Cards/LogWorkout";
 import AddContacts from "../components/Cards/AddContacts";
 import BeginWorkout from "../components/Cards/BeginWorkout";
-
+import PushButton from "../components/PushButton"
 
 export default class Dashboard extends Component {
 
@@ -62,6 +62,7 @@ export default class Dashboard extends Component {
                                 <br />
                                 <BeginWorkout />
                                 <br />
+                                <PushButton />
                             </Jumbotron>
                         </Col>
                         <Col size="lg-4"></Col>
