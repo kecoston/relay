@@ -45,7 +45,7 @@ export default function AddContacts() {
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="span" style={{color: "#58585F", letterSpacing: 1.5}}>
-            Add Contacts
+            My Contacts
           </Typography>
           <hr />
           <Typography variant="body2" color="textSecondary" component="span">
