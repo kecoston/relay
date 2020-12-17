@@ -19,14 +19,13 @@ import TextField from "@material-ui/core/TextField";
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-
 import API from '../../utils/API'
 
-
+//MaterialUi Styles
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 150
+        minWidth: 200
     },
     selectEmpty: {
         marginTop: theme.spacing(2)
@@ -37,17 +36,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function WorkoutBtn() {
+    //Styles set by MaterialUi
     const classes = useStyles();
 
-    const [time, setTime] = React.useState("");
+
     const [contacts, setContacts] = React.useState("");
     const [open, setOpen] = React.useState(false);
+    const [formObject, setFormObject] = React.useState({
+        title: "",
+        interval: "",
+        selectedContact: [""],
+    });
 
 
     useEffect(() => {
         loadContacts()
     }, []);
 
+    //Load contacts into form
     function loadContacts() {
         API.getContacts()
             .then(res =>
@@ -57,8 +63,9 @@ export default function WorkoutBtn() {
     };
 
 
-    const handleChange = (event) => {
-        setTime(event.target.value);
+    function handleInputChange(event) {
+        const { name, value } = event.target;
+        setFormObject({ ...formObject, [name]: value })
     };
 
     const handleClickOpen = () => {
@@ -69,14 +76,27 @@ export default function WorkoutBtn() {
         setOpen(false);
     };
 
-    // const flatProps = {
-    //     options: contacts.map((option) => option.firstName)
-    // };
+
+    // Maping contacts function MaterialUi
     const defaultProps = {
         options: contacts,
-        getOptionLabel: (option) => option.firstName + "" +  option.lastName,
-      };
+        getOptionLabel: (option) => option.firstName + " " + option.lastName
+    };
 
+ 
+
+    function handleFormSubmit(event) {
+        event.preventDefault()
+        if (formObject.title && formObject.interval && formObject.selectedContact) {
+            API.saveActivities({
+                title: formObject.title,
+                interval: formObject.interval,
+                selectedContact: formObject.selectedContact
+            })
+                .then(() => console.log("submitted"))
+                .catch(err => console.log(err));
+        }
+    };
 
 
     return (
@@ -84,7 +104,10 @@ export default function WorkoutBtn() {
         <div>
             <Button variant="contained" onClick={handleClickOpen}>
                 Begin Your Workout
-      </Button>
+            </Button>
+
+
+
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -98,19 +121,10 @@ export default function WorkoutBtn() {
                 <DialogContent>
                     <DialogContentText  >
 
-                        <form
-                            item
-                            xs={4}
-                            className={classes.root}
-                            noValidate
-                            autoComplete="off"
-                        >
-                            <TextField
-                                item
-                                xs={12}
-                                id="standard-basic"
-                                label="Workout Title"
-                            />
+
+
+                        <form className={classes.root} noValidate autoComplete="off">
+                            <TextField id="standard-basic" name="title" value={formObject.title} label="Standard" onChange={handleInputChange} />
                         </form>
 
                         <FormControl item xs={4} className={classes.formControl}>
@@ -120,29 +134,31 @@ export default function WorkoutBtn() {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={time}
-                                onChange={handleChange}
+                                onChange={handleInputChange}
+                                value={formObject.interval}
+                                name="interval"
+
                             >
                                 <MenuItem value={"00:05:00"}>00:05:00</MenuItem>
-                                <MenuItem value={"00:10:00"}>00:10:00</MenuItem>
-                                <MenuItem value={"00:15:00"}>00:15:00</MenuItem>
-                                <MenuItem value={"00:20:00"}>00:20:00</MenuItem>
-                                <MenuItem value={"00:30:00"}>00:30:00</MenuItem>
-                                <MenuItem value={"01:00:00"}>01:00:00</MenuItem>
+                                <MenuItem value={"00:10:00"} >00:10:00</MenuItem>
+                                <MenuItem value={"00:15:00"} >00:15:00</MenuItem>
+                                <MenuItem value={"00:20:00"} >00:20:00</MenuItem>
+                                <MenuItem value={"00:30:00"} >00:30:00</MenuItem>
+                                <MenuItem value={"01:00:00"} >01:00:00</MenuItem>
 
                             </Select>
 
                         </FormControl>
 
+
                         <Autocomplete
                             {...defaultProps}
-                            id="Select Contact"
-                            debug
+                            id="debug"
+                            name="selectedContact" 
+                            value={formObject.selectedContact}
+                            onChange={handleInputChange}
                             renderInput={(params) => <TextField {...params} label="Select Contact" margin="normal" />}
                         />
-
-
-
 
                     </DialogContentText>
 
@@ -150,7 +166,10 @@ export default function WorkoutBtn() {
                         <Button onClick={handleClose} color="primary">
                             Close
                 </Button>
-                        <Button onClick={handleClose} color="primary" autoFocus>
+                        <Button
+                            disabled={!(formObject.title && formObject.interval && formObject.selectedContact)}
+                            onClick={handleFormSubmit, console.log("formobject:", formObject)}
+                            color="primary" autoFocus>
                             Start
                 </Button>
                     </DialogActions>

@@ -9,7 +9,6 @@ const activitiesSchema = new mongoose.Schema({
     },
     time: {
         type: String,
-        required: true
     },
     interval: {
         type: String,
