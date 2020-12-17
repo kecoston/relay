@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import TimerDisplay from "../TimerDisplay"
 import TimerBtn from "../TimerBtn"
+import IconLabelButtons from "../Buttons"
 import "./timer.css"
-
 
 function Timer () {
 
@@ -59,6 +59,7 @@ function Timer () {
                  <TimerDisplay time={time}/>
                  <TimerBtn status={status} resume={resume} reset={reset} pause={pause} start={start}/>
             </div>
+            <IconLabelButtons />
        </div>
       </div>
     );
