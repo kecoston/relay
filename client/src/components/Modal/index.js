@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import TextField from '@material-ui/core/TextField';
-
+import API from "../../utils/API";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -22,7 +22,40 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TransitionsModal() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [contacts, setContacts] = useState([]);
+    const [formObject, setFormObject] = useState({})
+
+    useEffect(() => {
+        loadContacts()
+    }, [])
+
+    function loadContacts() {
+        API.getContacts()
+          .then(res =>
+            setContacts(res.data)
+          )
+          .catch(err => console.log(err));
+    }
+
+    function handleInputChange(event) {
+        const { name, value } = event.target;
+        setFormObject({...formObject, [name]: value})
+    };
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        if (formObject.firstName && formObject.lastName && formObject.phoneNumber) {
+          API.saveContact({
+            firstName: formObject.firstName,
+            lastName: formObject.lastName,
+            phoneNumber: formObject.phoneNumber
+          })
+            .then(handleClose)
+            .then(res => loadContacts())
+            .catch(err => console.log(err));
+        }
+    };
 
     const handleOpen = () => {
         setOpen(true);
@@ -53,12 +86,12 @@ export default function TransitionsModal() {
                     <div className={classes.paper}>
                         <h4>Add Contact</h4>
                         <form className={classes.root} noValidate autoComplete="off">
-                            <TextField id="standard-basic" label="First Name" /><br />
-                            <TextField id="standard-basic" label="Last Name" /><br />
-                            <TextField id="standard-basic" label="Phone Number" /><br />
+                            <TextField id="standard-basic" label="First Name" name="firstName" onChange={handleInputChange} /><br />
+                            <TextField id="standard-basic" label="Last Name" name="lastName" onChange={handleInputChange}/><br />
+                            <TextField id="standard-basic" label="Phone Number" name="phoneNumber" onChange={handleInputChange}/><br />
                         </form>
                         <br />
-                        <button type="button"> Submit </button>
+                        <button type="button" onClick={handleFormSubmit} onClose={handleClose}> Submit </button>
                     </div>
                 </Fade>
             </Modal>
