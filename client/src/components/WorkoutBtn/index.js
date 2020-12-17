@@ -45,7 +45,7 @@ export default function WorkoutBtn() {
     const [formObject, setFormObject] = React.useState({
         title: "",
         interval: "",
-        selectedContact: [""],
+        selectedContact: null
     });
 
 
