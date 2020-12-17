@@ -4,8 +4,6 @@ import { Row, Col, Container } from "../components/Grid";
 import TimerBtn from "../components/TimerBtn";
 import Timer from "../components/Timer";
 
-
-
 export default class Workout extends Component {
     render() {
         return (
