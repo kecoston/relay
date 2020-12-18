@@ -46,7 +46,7 @@ export default function WorkoutBtn() {
     const [formObject, setFormObject] = React.useState({
         title: "",
         interval: "",
-        selectedContact: null 
+        contactId: null 
     });
 
 
@@ -93,7 +93,7 @@ export default function WorkoutBtn() {
             API.saveActivities({
                 title: formObject.title,
                 interval: formObject.interval,
-                selectedContact: formObject.selectedContact._id
+                contactId: formObject.contactId._id
             })
                 .then(() =>  window.location.href =  '/workout' )
                 .catch(err => console.log(err));
@@ -158,11 +158,11 @@ export default function WorkoutBtn() {
                             id="debug"
                             name="selectedContact" 
 
-                            value={formObject.selectedContact}
+                            value={formObject.contactId}
 
                             onChange={(event, newValue) => {
                                 console.log(newValue)
-                                setFormObject({...formObject, selectedContact:newValue});
+                                setFormObject({...formObject, contactId:newValue});
                               }}
 
                             renderInput={(params) => <TextField {...params} label="Select Contact" margin="normal" />}
@@ -175,7 +175,7 @@ export default function WorkoutBtn() {
                             Close
                 </Button>
                         <Button
-                            disabled={!(formObject.title && formObject.interval && formObject.selectedContact)}
+                            disabled={!(formObject.title && formObject.interval && formObject.contactId)}
                             onClick={handleFormSubmit}
                             color="primary" autoFocus>
                             Start
