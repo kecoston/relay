@@ -56,9 +56,8 @@ export default function LogWorkout() {
                 key={workout._id}
                 title={workout.title}
                 date={workout.date}
-                time={workout.time}
                 interval={workout.interval}
-                selectedContact={workout.selectedContact}
+                contactId={workout.contactId}
                 />
               );
             })}

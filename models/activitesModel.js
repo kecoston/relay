@@ -7,9 +7,6 @@ const activitiesSchema = new mongoose.Schema({
         type: String,
         required: true 
     },
-    time: {
-        type: String,
-    },
     interval: {
         type: String,
         required: true
@@ -19,7 +16,7 @@ const activitiesSchema = new mongoose.Schema({
         type: Date, 
         default: Date.now 
     },
-    selectedContact: {
+    contactId: {
         type: String, 
         required: true
     }
