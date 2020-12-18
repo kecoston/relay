@@ -39,13 +39,14 @@ export default function WorkoutBtn() {
     //Styles set by MaterialUi
     const classes = useStyles();
 
-
+    
     const [contacts, setContacts] = React.useState("");
     const [open, setOpen] = React.useState(false);
+    
     const [formObject, setFormObject] = React.useState({
         title: "",
         interval: "",
-        selectedContact: null
+        selectedContact: null 
     });
 
 
@@ -155,8 +156,14 @@ export default function WorkoutBtn() {
                             {...defaultProps}
                             id="debug"
                             name="selectedContact" 
+
                             value={formObject.selectedContact}
-                            onChange={handleInputChange}
+
+                            onChange={(event, newValue) => {
+                                console.log(newValue)
+                                setFormObject({...formObject, selectedContact:newValue});
+                              }}
+
                             renderInput={(params) => <TextField {...params} label="Select Contact" margin="normal" />}
                         />
 
