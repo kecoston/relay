@@ -43,9 +43,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Activity({
   title,
   date,
-  time,
   interval,
-  selectedContact
+  contactId
 }) {
   const classes = useStyles();
 
@@ -79,7 +78,7 @@ export default function Activity({
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            On {date} you went for a {time} run and set {selectedContact} as
+            On {date} you went for a insert time run and set {contactId} as
             your emergency contact. You had messages sent to them every {interval}.
           </Typography>
         </AccordionDetails>

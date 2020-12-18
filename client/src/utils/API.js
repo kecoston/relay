@@ -17,6 +17,7 @@ export default {
   saveContact: function (contactData) {
     return axios.post("/api/contacts", contactData);
   },
+   ////////////////////////////////
   // Gets all activities
   getActivities: function () {
     return axios.get("/api/activities/");
@@ -30,7 +31,24 @@ export default {
     return axios.delete("/api/activities/" + id);
   },
   // Saves a activities to the database
-  saveActivities: function (contactData) {
-    return axios.post("/api/activities", contactData);
+  saveActivities: function (activityData) {
+    return axios.post("/api/activities", activityData);
+  },
+   ////////////////////////////////
+  // Gets all summary
+  getSummaries: function () {
+    return axios.get("/api/summary/");
+  },
+  // Gets the summary with the given id
+  getSummary: function (id) {
+    return axios.get("/api/summary/" + id);
+  },
+  // Deletes the summary with the given id
+  deleteSummary: function (id) {
+    return axios.delete("/api/summary/" + id);
+  },
+  // Saves a summary to the database
+  saveSummary: function (summaryData) {
+    return axios.post("/api/summary", summaryData);
   }
 };
