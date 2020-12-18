@@ -68,7 +68,7 @@ export default function TransitionsModal() {
 
     return (
         <div>
-            <Button type="button" color="defaul" variant="outlined" onClick={handleOpen}>
+            <Button type="button" color="default" variant="outlined" onClick={handleOpen}>
                 Add Contact
             </Button>
             <Modal
