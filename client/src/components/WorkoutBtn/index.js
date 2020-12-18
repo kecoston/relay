@@ -88,7 +88,7 @@ export default function WorkoutBtn() {
 
     function handleFormSubmit(event) {
         event.preventDefault()
-        if (formObject.title && formObject.interval && formObject.selectedContact) {
+        if (formObject.title && formObject.interval && formObject.contactId) {
             console.log("click")
             API.saveActivities({
                 title: formObject.title,
