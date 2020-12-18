@@ -89,12 +89,13 @@ export default function WorkoutBtn() {
     function handleFormSubmit(event) {
         event.preventDefault()
         if (formObject.title && formObject.interval && formObject.selectedContact) {
+            console.log("click")
             API.saveActivities({
                 title: formObject.title,
                 interval: formObject.interval,
-                selectedContact: formObject.selectedContact
+                selectedContact: formObject.selectedContact._id
             })
-                .then(() => console.log("submitted"))
+                .then(() =>  window.location.href =  '/workout' )
                 .catch(err => console.log(err));
         }
     };
@@ -175,9 +176,10 @@ export default function WorkoutBtn() {
                 </Button>
                         <Button
                             disabled={!(formObject.title && formObject.interval && formObject.selectedContact)}
-                            onClick={handleFormSubmit, console.log("formobject:", formObject)}
+                            onClick={handleFormSubmit}
                             color="primary" autoFocus>
                             Start
+
                 </Button>
                     </DialogActions>
 
