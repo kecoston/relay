@@ -3,29 +3,29 @@ import Jumbotron from "../components/Jumbotron";
 import { Row, Col, Container } from "../components/Grid";
 import TimerBtn from "../components/TimerBtn";
 import Timer from "../components/Timer";
-import API from "../utils/API"; 
-
-
+import WorkoutDetails from "../components/WorkoutDetails"
+import API from "../utils/API"
 
 function Workout () {
 
 // Pull in activities 
-// const [activities, setActivities] = useState("")
-// const [interval, setInterval] = useState("")
+const [activities, setActivities] = useState("")
 
-// useEffect(() => {
-//     getWorkoutDetails()
-// }, []);
+useEffect(() => {
+    getWorkoutDetails()
+}, []);
 
 
-// function getWorkoutDetails () {
-//     API.getActivityContact()
-//     .then(res => 
-//         setActivities(res.data)   
-//     )
-//         .catch(err => console.log(err))
-// }
+function getWorkoutDetails () {
+    API.getActivities()
+    .then(res => 
+        setActivities(res.data)
+        
+    ).then (console.log("activities:", activities))
+    .catch(err => console.log(err))
+}
  
+
 
 
 // function setInterval () {
@@ -54,6 +54,12 @@ function Workout () {
                         </Col>
                         <Col size="lg-6">
                             <Jumbotron>
+                                <WorkoutDetails
+                                key={activities._id}
+                                title={activities.title}
+                                interval={activities.interval}
+
+                                />
                                 <hr />
                                 <Timer />
                                 <hr />

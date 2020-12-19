@@ -24,12 +24,10 @@ const activitySeeds = [
   {
     title: "After Lunch Walk",
     interval: "00:10:00",
-    contactId: "5fdba6e89f87a81858c6c629"
   },
   {
     title: "Morning Run",
     interval: "00:10:00",
-    contactId: "5fdba6e89f87a81858c6c629"
   }
 ];
 
@@ -42,12 +40,7 @@ const userSeeds = [
   }
 ]
 
-const workoutSummarySeeds = [
-  {
-    workoutId: "5fdba6e89f87a81858c6c627",
-    totalTime: "01:00:00",
-  }
-]
+
 
 db.Contacts.remove({})
   .then(() => db.Contacts.collection.insertMany(contactSeeds))
@@ -82,13 +75,3 @@ db.Activities.remove({})
     process.exit(1);
   });
 
-  db.WorkoutSummary.remove({})
-  .then(() => db.WorkoutSummary.collection.insertMany(workoutSummarySeeds))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
