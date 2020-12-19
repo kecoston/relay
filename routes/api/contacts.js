@@ -12,5 +12,8 @@ router
     .put(contactsController.update)
     .delete(contactsController.remove);
 
+router 
+    .route("/:id/activity")
+    .get(contactsController.findActivityContact)
 
 module.exports = router;
