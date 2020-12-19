@@ -1,3 +1,4 @@
+const { RequestResponseStatusCode } = require("@vonage/server-sdk");
 const db = require("../models")
 
 
@@ -17,7 +18,12 @@ module.exports = {
     },
     create: function (req, res) {
         db.Contacts
-            .create(req.body)
+            .create({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                phoneNumber:req.body.phoneNumber,
+                activities: [req.body.selectedActivity]
+            })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },

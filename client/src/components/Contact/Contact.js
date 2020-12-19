@@ -49,8 +49,7 @@ export default function Contact() {
       <div>
       {contacts.length ? (
       <List className={classes.root}>
-        {contacts.map(contacts => (
-          console.log(contacts),
+        {contacts.map(contacts => 
         <ListItem key={contacts._id}>
           <ListItemAvatar>
             <Avatar>
@@ -60,7 +59,7 @@ export default function Contact() {
           <ListItemText primary= {contacts.firstName + " " + contacts.lastName} secondary={contacts.phoneNumber} />
           <DeleteBtn onClick={() => deleteContacts(contacts._id)} />
         </ListItem>
-        ))}
+        )}
       </List>
       ) : (
         <p></p>

@@ -94,7 +94,7 @@ export default function WorkoutBtn() {
             API.saveActivities({
                 title: formObject.title,
                 interval: formObject.interval,
-                selectedContact: formObject.selectedContact._id
+                selectedContact: formObject.selectedContact
             })
                 .then(() =>  window.location.href =  '/workout' )
                 .catch(err => console.log(err));
