@@ -33,6 +33,14 @@ module.exports = {
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+    findSummaryActivity: function (req, res) {
+        db.WorkoutSummary
+        this.findById({_id: req.params.id}).populate('activity')
+        .sort({ date: -1 })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+
     }
 
 };

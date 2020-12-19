@@ -15,11 +15,16 @@ const activitiesSchema = new mongoose.Schema({
     date: { 
         type: Date, 
         default: Date.now 
-    },
-    contactId: {
-        type: String, 
-        required: true
-    }
+    }, 
+    workoutSummary: [{
+        type: Schema.Types.ObjectId,
+        ref: "workoutSummary"
+    }],
+    contacts: [{
+        type: Schema.Types.ObjectId,
+        ref: "contacts"
+    }]
+
 
 
 });

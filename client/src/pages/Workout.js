@@ -1,37 +1,49 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Jumbotron from "../components/Jumbotron";
 import { Row, Col, Container } from "../components/Grid";
 import TimerBtn from "../components/TimerBtn";
 import Timer from "../components/Timer";
-//import API from "../utils/API";
+import API from "../utils/API"; 
 
 
 
-// useEffect () {
+function Workout () {
 
-// }
+// Pull in activities 
+// const [activities, setActivities] = useState("")
+// const [interval, setInterval] = useState("")
+
+// useEffect(() => {
+//     getWorkoutDetails()
+// }, []);
 
 
 // function getWorkoutDetails () {
 //     API.getActivities()
 //     .then(res => 
-//         setActivities()
-//         .catch(res => 
-//             set))
+//         setActivities(res.data)   
+//     )
+//         .catch(err => console.log(err))
 // }
  
 
-// function intervalEvent () {
+// function setInterval () {
 
-//     setTimeout(myFunction, 3000)
-//     console.log("message sent")
+//     let interval = activities.interval
+
+//     if (interval === "00:05:00") {
+//         setInterval === 300000
+//     } if (interval === "00:10:00") {
+//         setInterval === 600000
+//     } if (interval === "00:20:00") {
+//         setInterval === 3600000
+//     }if (interval === "00:30:00") {
+//         setInterval === 1800000
+//     }if (interval === "01:00:00") {
+//         setInterval === 3600000
+//     } 
 
 
-// }
-
-
-export default class Workout extends Component {
-    render() {
         return (
             <div>
                 <Container>
@@ -56,6 +68,7 @@ export default class Workout extends Component {
                 </Container>
             </div>
         )
-    }
+    
 }
 
+export default Workout

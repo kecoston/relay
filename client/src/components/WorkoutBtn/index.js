@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -40,10 +40,10 @@ export default function WorkoutBtn() {
     const classes = useStyles();
 
     
-    const [contacts, setContacts] = React.useState("");
-    const [open, setOpen] = React.useState(false);
+    const [contacts, setContacts] = useState("");
+    const [open, setOpen] = useState(false);
     
-    const [formObject, setFormObject] = React.useState({
+    const [formObject, setFormObject] = useState({
         title: "",
         interval: "",
         contactId: null 
