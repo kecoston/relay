@@ -23,6 +23,7 @@
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "@vonage/server-sdk": "^2.10.4",
     "animate.css": "^4.1.1",
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",

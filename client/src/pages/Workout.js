@@ -19,13 +19,14 @@ function Workout () {
 
 
 // function getWorkoutDetails () {
-//     API.getActivities()
+//     API.getActivityContact()
 //     .then(res => 
 //         setActivities(res.data)   
 //     )
 //         .catch(err => console.log(err))
 // }
  
+
 
 // function setInterval () {
 
