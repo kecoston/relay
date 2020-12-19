@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -40,13 +40,13 @@ export default function WorkoutBtn() {
     const classes = useStyles();
 
     
-    const [contacts, setContacts] = useState("");
-    const [open, setOpen] = useState(false);
+    const [contacts, setContacts] = React.useState("");
+    const [open, setOpen] = React.useState(false);
     
-    const [formObject, setFormObject] = useState({
+    const [formObject, setFormObject] = React.useState({
         title: "",
         interval: "",
-        contactId: null 
+        selectedContact: null 
     });
 
 
@@ -67,6 +67,7 @@ export default function WorkoutBtn() {
     function handleInputChange(event) {
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value })
+        console.log(formObject)
     };
 
     const handleClickOpen = () => {
@@ -88,12 +89,12 @@ export default function WorkoutBtn() {
 
     function handleFormSubmit(event) {
         event.preventDefault()
-        if (formObject.title && formObject.interval && formObject.contactId) {
+        if (formObject.title && formObject.interval && formObject.selectedContact) {
             console.log("click")
             API.saveActivities({
                 title: formObject.title,
                 interval: formObject.interval,
-                contactId: formObject.contactId._id
+                selectedContact: formObject.selectedContact._id
             })
                 .then(() =>  window.location.href =  '/workout' )
                 .catch(err => console.log(err));
@@ -158,11 +159,11 @@ export default function WorkoutBtn() {
                             id="debug"
                             name="selectedContact" 
 
-                            value={formObject.contactId}
+                            value={formObject.selectedContact}
 
                             onChange={(event, newValue) => {
                                 console.log(newValue)
-                                setFormObject({...formObject, contactId:newValue});
+                                setFormObject({...formObject, selectedContact:newValue});
                               }}
 
                             renderInput={(params) => <TextField {...params} label="Select Contact" margin="normal" />}
@@ -175,7 +176,7 @@ export default function WorkoutBtn() {
                             Close
                 </Button>
                         <Button
-                            disabled={!(formObject.title && formObject.interval && formObject.contactId)}
+                            disabled={!(formObject.title && formObject.interval && formObject.selectedContact)}
                             onClick={handleFormSubmit}
                             color="primary" autoFocus>
                             Start

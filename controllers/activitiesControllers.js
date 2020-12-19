@@ -17,7 +17,11 @@ module.exports = {
     },
     create: function (req, res) {
         db.Activities
-            .create(req.body)
+            .create({
+                title: req.body.title,
+                interval: req.body.interval,
+                contacts: [req.body.selectedContact]
+            })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -48,7 +52,6 @@ module.exports = {
         .sort({ date: -1 })
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
-
-    }
+    },
 
 };
