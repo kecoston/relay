@@ -6,28 +6,29 @@ import Timer from "../components/Timer";
 import WorkoutDetails from "../components/WorkoutDetails"
 import API from "../utils/API"
 
+
 function Workout () {
 
-// Pull in activities 
-const [activities, setActivities] = useState("")
+const [activities, setActivities] = useState("");
+const currentActivity = activities[0]
 
 useEffect(() => {
-    getWorkoutDetails()
-}, [])
+    loadActivities()
+}, []);
 
-
-function getWorkoutDetails() {
+function loadActivities () {
     API.getActivities()
     .then(res => 
         setActivities(res.data)
-        
-    ).then (console.log("activities:", activities))
-    .catch(err => console.log(err))
-}
- 
+        )
+        .catch(err => console.log(err));
+};
 
 
+console.log(activities[0])
 
+// let currentInterval = currentActivity.interval
+// console.log(currentInterval)
 // function setInterval () {
 
 //     let interval = activities.interval
@@ -44,7 +45,6 @@ function getWorkoutDetails() {
 //         setInterval === 3600000
 //     } 
 
-
         return (
             <div>
                 <Container>
@@ -55,9 +55,12 @@ function getWorkoutDetails() {
                         <Col size="lg-6">
                             <Jumbotron>
                                 <WorkoutDetails
-                                key={activities._id}
-                                title={activities.title}
-                                interval={activities.interval}
+                                key={currentActivity._id}
+                                title={currentActivity.title}
+                                interval={currentActivity.interval}
+                                firstName={currentActivity.contact.firstName}
+                                lastName={currentActivity.contact.lastName}
+                                phoneNumber={currentActivity.contact.phoneNumber}
 
                                 />
                                 <hr />
