@@ -18,7 +18,7 @@ export default {
     return axios.post("/api/contacts/", contactData);
   },
   getContactActivity: function (id) {
-    return axios.get("api/contacts/ + id")
+    return axios.get("api/contacts/" + id)
   },
 
    ////////////////////////////////

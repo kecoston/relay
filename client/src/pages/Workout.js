@@ -7,92 +7,86 @@ import WorkoutDetails from "../components/WorkoutDetails"
 import API from "../utils/API"
 
 
-function Workout () {
+function Workout() {
 
-const [activities, setActivities] = useState([""]);
-const [contact, setContact] = useState([""]);
-const currentActivity = activities[0]
-const contactId = currentActivity.contacts
+    const [activities, setActivities] = useState([""]);
+    const [contact, setContact] = useState([""]);
+    const currentActivity = activities[0]
+    const contactId = currentActivity.contacts
 
-useEffect((contactId) => {
-    loadActivities()
-    loadContactDetails(contactId)
-}, []);
+    useEffect((contactId) => {
+        loadActivities(contactId)
+    }, []);
 
-function loadActivities () {
-    API.getActivities()
-    .then(res => 
-        setActivities(res.data)
-        )
-        .catch(err => console.log(err));
-};
+    function loadActivities(id) {
+       fetch(API.getActivities())
+            .then(res =>
+                setActivities(res.data))
+        API.getContact(id)
+            .then(res =>
+                setContact(res.date)
+            )
+        .catch (err => console.log(err));
+    };
 
-function loadContactDetails(id) {
-    API.getContact(id) 
-    .then(res =>
-    setContact(res.date)
-    )
-    .catch(err =>console.log(err));
-
- };
-
-console.log(activities)
-console.log(contactId)
-console.log(contact)
+  
+    console.log(currentActivity)
+    console.log(contactId)
+    console.log(contact)
 
 
-// let currentInterval = currentActivity.interval
-// console.log(currentInterval)
-// function setInterval () {
+    // let currentInterval = currentActivity.interval
+    // console.log(currentInterval)
+    // function setInterval () {
 
-//     let interval = activities.interval
+    //     let interval = activities.interval
 
-//     if (interval === "00:05:00") {
-//         setInterval === 300000
-//     } if (interval === "00:10:00") {
-//         setInterval === 600000
-//     } if (interval === "00:20:00") {
-//         setInterval === 3600000
-//     }if (interval === "00:30:00") {
-//         setInterval === 1800000
-//     }if (interval === "01:00:00") {
-//         setInterval === 3600000
-//     } 
+    //     if (interval === "00:05:00") {
+    //         setInterval === 300000
+    //     } if (interval === "00:10:00") {
+    //         setInterval === 600000
+    //     } if (interval === "00:20:00") {
+    //         setInterval === 3600000
+    //     }if (interval === "00:30:00") {
+    //         setInterval === 1800000
+    //     }if (interval === "01:00:00") {
+    //         setInterval === 3600000
+    //     } 
 
-        return (
-            <div>
-                <Container>
-                    <Row>
-                        <Col size="lg-3">
-                           
-                        </Col>
-                        <Col size="lg-6">
-                            <Jumbotron>
-                                <WorkoutDetails
+    return (
+        <div>
+            <Container>
+                <Row>
+                    <Col size="lg-3">
+
+                    </Col>
+                    <Col size="lg-6">
+                        <Jumbotron>
+                            <WorkoutDetails
                                 key={currentActivity._id}
                                 title={currentActivity.title}
                                 interval={currentActivity.interval}
-                                // firstName={contact.firstName}
-                                // lastName={contact.lastName}
-                                // phoneNumber={contact.phoneNumber}
+                            // firstName={contact.firstName}
+                            // lastName={contact.lastName}
+                            // phoneNumber={contact.phoneNumber}
 
-                                />
-                                <hr />
-                                <Timer />
-                                <hr />
-                                <TimerBtn />
-                            </Jumbotron>
-                        
-                        </Col>
-                        <Col size="lg-6">
-                           
-                        </Col>
-                    </Row>
+                            />
+                            <hr />
+                            <Timer />
+                            <hr />
+                            <TimerBtn />
+                        </Jumbotron>
 
-                </Container>
-            </div>
-        )
-    
+                    </Col>
+                    <Col size="lg-6">
+
+                    </Col>
+                </Row>
+
+            </Container>
+        </div>
+    )
+
 }
 
 export default Workout
