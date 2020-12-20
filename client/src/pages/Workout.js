@@ -10,10 +10,13 @@ import API from "../utils/API"
 function Workout () {
 
 const [activities, setActivities] = useState([""]);
+const [contact, setContact] = useState([""]);
 const currentActivity = activities[0]
+const contactId = currentActivity.contacts
 
-useEffect(() => {
+useEffect((contactId) => {
     loadActivities()
+    loadContactDetails(contactId)
 }, []);
 
 function loadActivities () {
@@ -24,8 +27,19 @@ function loadActivities () {
         .catch(err => console.log(err));
 };
 
+function loadContactDetails(id) {
+    API.getContact(id) 
+    .then(res =>
+    setContact(res.date)
+    )
+    .catch(err =>console.log(err));
 
-console.log(activities[0])
+ };
+
+console.log(activities)
+console.log(contactId)
+console.log(contact)
+
 
 // let currentInterval = currentActivity.interval
 // console.log(currentInterval)
@@ -58,9 +72,9 @@ console.log(activities[0])
                                 key={currentActivity._id}
                                 title={currentActivity.title}
                                 interval={currentActivity.interval}
-                                // firstName={currentActivity.contacts.firstName}
-                                // lastName={currentActivity.contacts.lastName}
-                                // phoneNumber={currentActivity.contacts.phoneNumber}
+                                // firstName={contact.firstName}
+                                // lastName={contact.lastName}
+                                // phoneNumber={contact.phoneNumber}
 
                                 />
                                 <hr />
