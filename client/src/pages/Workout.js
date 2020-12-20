@@ -9,7 +9,7 @@ import API from "../utils/API"
 
 function Workout () {
 
-const [activities, setActivities] = useState("");
+const [activities, setActivities] = useState([""]);
 const currentActivity = activities[0]
 
 useEffect(() => {
@@ -58,9 +58,9 @@ console.log(activities[0])
                                 key={currentActivity._id}
                                 title={currentActivity.title}
                                 interval={currentActivity.interval}
-                                firstName={currentActivity.contact.firstName}
-                                lastName={currentActivity.contact.lastName}
-                                phoneNumber={currentActivity.contact.phoneNumber}
+                                // firstName={currentActivity.contacts.firstName}
+                                // lastName={currentActivity.contacts.lastName}
+                                // phoneNumber={currentActivity.contacts.phoneNumber}
 
                                 />
                                 <hr />

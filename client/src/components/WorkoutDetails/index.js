@@ -23,9 +23,9 @@ const useStyles = makeStyles({
 
 export default function WorkoutDetails({
     interval, 
-    // firstName,
-    // lastName, 
-    // phoneNumber,
+    firstName,
+    lastName, 
+    phoneNumber,
     title,
 }) {
   const classes = useStyles();
@@ -37,9 +37,9 @@ export default function WorkoutDetails({
           Workout Details: {title} 
         </Typography>
         <Typography variant="body2" component="p">
-          Emergency Contact: 
+          Emergency Contact: {firstName} {lastName}
           <br />
-          Emergency Contact Phone Number: 
+          Emergency Contact Phone Number: {phoneNumber}
           Message Interval: {interval}
           <br />
         </Typography>
