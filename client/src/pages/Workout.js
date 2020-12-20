@@ -13,10 +13,10 @@ const [activities, setActivities] = useState("")
 
 useEffect(() => {
     getWorkoutDetails()
-}, []);
+}, [])
 
 
-function getWorkoutDetails () {
+function getWorkoutDetails() {
     API.getActivities()
     .then(res => 
         setActivities(res.data)
