@@ -15,29 +15,22 @@ function Workout() {
     const contactId = currentActivity.contacts
 
     useEffect((contactId) => {
-        loadActivities(contactId)
-    }, []);
-
-    function loadActivities(id) {
-       fetch(API.getActivities())
+       
+        API.getActivities()
+            .then(res => setActivities(res.data)
+            )           
+        API.getContact(contactId)
             .then(res =>
-                setActivities(res.data))
-        API.getContact(id)
-            .then(res =>
-                setContact(res.date)
+                setContact (res.data)
             )
         .catch (err => console.log(err));
-    };
-
+   
+    }, []);
   
     console.log(currentActivity)
     console.log(contactId)
     console.log(contact)
 
-
-    // let currentInterval = currentActivity.interval
-    // console.log(currentInterval)
-    // function setInterval () {
 
     //     let interval = activities.interval
 
@@ -75,6 +68,7 @@ function Workout() {
                             <Timer />
                             <hr />
                             <TimerBtn />
+                            <hr /> 
                         </Jumbotron>
 
                     </Col>

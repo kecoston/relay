@@ -7,13 +7,13 @@ router.route("/")
     .post(contactsController.create);
 
 router 
-    .route("contacts/:id")
+    .route("/:id")
     .get(contactsController.findById)
     .put(contactsController.update)
     .delete(contactsController.remove);
 
 router 
-    .route("contacts/:id/activity")
+    .route("/:id/activity")
     .get(contactsController.findActivityContact)
 
 module.exports = router;
