@@ -20,14 +20,25 @@ app.use(passport.session()) // calls the deserializeUser
 // res.status(200).json({ message: "Hello express" });
 // });
 
-app.use(cors());
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+app.use(
+  cors({
+      origin: "http://localhost:3000/",
+      methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
+      credentials: true
+  })
+);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://lhrlslacktest.ngrok.io");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
 
 //Add routes, both API and view 
 app.use(routes)
