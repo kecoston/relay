@@ -40,6 +40,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "react-moment": "^1.1.1",
+    "twilio": "^3.54.1",
     "web-push": "^3.4.4"
   }
 }
