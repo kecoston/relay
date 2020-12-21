@@ -13,29 +13,30 @@ const Vonage = require('@vonage/server-sdk')
 
 const vonage = new Vonage({
   apiKey: "044d053d",
-  apiSecret: "SECRET KEY"
+  apiSecret: "WfSDx917aV4z19Lx"
 })
 
 let from = '14696913589'
-let to = 'Contact Number'
+let to = '*Contact Number*'
 
 
-// function sendUpdate () {
-//   let text = 'This is a message from Relay: this is *username* current location: *Location*'
 
-//   vonage.message.sendSms(from, to, text, (err, responseData) => {
-//     if (err) {
+function sendUpdate () {
+  let text = 'This is a message from Relay: this is *username* current location: *Location*'
+
+  vonage.message.sendSms(from, to, text, (err, responseData) => {
+    if (err) {
      
-//       console.log(err);
-//     } else {
-//       if (responseData.messages[0]['status'] === "0") {
-//         console.log("Message sent successfully.");
-//       } else {
-//         console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-//       }
-//     }
-//   })
-// }
+      console.log(err);
+    } else {
+      if (responseData.messages[0]['status'] === "0") {
+        console.log("Message sent successfully.");
+      } else {
+        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+      }
+    }
+  })
+}
 
 
 
@@ -48,11 +49,21 @@ const [status, setStatus] = useState(0);
 // started = 1
 // stopped = 2
 
+
+const beginInterval = () => {
+  setInterval(testing, 3000)
+}
+
+function testing () {
+  console.log("Test")
+}
+
 const start = () => {
   run();
   setStatus(1);
   setInterv(setInterval(run, 10));
   startSMS()
+  beginInterval()
 };
 
 function startSMS () {
@@ -95,7 +106,10 @@ const run = () => {
 
 
 function pauseSMS () {
+   
+  var questPause = window.confirm("Would you like to notify your contact that you have paused your workout?");
   
+  if (questPause === true) {
   let text = 'This is to notify you that *User Name* has paused their workout. They are located here: *Location*'
 
   vonage.message.sendSms(from, to, text, (err, responseData) => {
@@ -112,14 +126,20 @@ function pauseSMS () {
   })
 }
 
+}
+
 const pause = () => {
   clearInterval(interv);
   setStatus(2);
   pauseSMS()
+  clearInterval(beginInterval)
+
 };
 
 function resetSms () {
-  
+
+  var questRest = window.confirm("Would you like to notify your contact that you have reset your workout?")
+  if(questRest === true) {
   let text = 'This is to notify you that *User Name* has reset their workout timeclock.'
 
   vonage.message.sendSms(from, to, text, (err, responseData) => {
@@ -135,16 +155,21 @@ function resetSms () {
     }
   })
 }
+}
 
 
 const reset = () => {
+  
   clearInterval(interv);
   setStatus(0);
   setTime({ ms: 0, s: 0, m: 0, h: 0 })
   resetSms()
+  beginInterval()
+
 };
 
 const resume = () => start();
+
 
 
 return (
@@ -160,5 +185,6 @@ return (
 );
 
 }
+
 
 export default Timer;
