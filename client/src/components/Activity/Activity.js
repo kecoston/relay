@@ -11,6 +11,8 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import moment from 'moment'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,6 +56,8 @@ export default function Activity({
     setExpanded(isExpanded ? panel : false);
   };
 
+  
+
   return (
     <div className={classes.root}>
       <Accordion
@@ -72,7 +76,7 @@ export default function Activity({
                   <DirectionsRunIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary= {title} secondary= {date}/>
+              <ListItemText primary= {title} secondary={moment(date).format('MMM Do YYYY, h:mm:ss a')}/>
             </ListItem>
           </List>
         </AccordionSummary>
