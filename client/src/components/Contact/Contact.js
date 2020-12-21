@@ -39,7 +39,8 @@ export default function Contact() {
  function deleteContacts(id) {
   API.deleteContacts(id)
     .then(console.log('deleted contact!'))
-    .then(res => loadContacts()) 
+    .then(window.location.reload())
+    .then(res => loadContacts())
     .catch(err => console.log(err));
   };
   
