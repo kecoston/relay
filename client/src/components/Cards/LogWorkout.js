@@ -24,6 +24,7 @@ export default function LogWorkout() {
 
   const [workouts, setWorkouts] = useState("");
 
+
   useEffect(() => {
     loadWorkouts()
   }, []);
@@ -37,7 +38,7 @@ export default function LogWorkout() {
   };
 
   return (
-
+    
     <Card className={classes.root}>
       <CardActionArea>
         <CardContent>

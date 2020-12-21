@@ -4,9 +4,8 @@ import TimerBtn from "../TimerBtn"
 import IconLabelButtons from "../Buttons"
 import Geolocate from "../Geolocation"
 import "./timer.css"
+import API from "../../utils/API";
 
-//Geolocate function to address
-// import getLocation from "../Geolocation"
 
 //Vonage requirements 
 const VONAGE_SECRET = process.env.REACT_APP_VONAGE_SECRET
@@ -136,7 +135,6 @@ const pause = () => {
   setStatus(2);
   pauseSMS()
   clearInterval(beginInterval)
-
 };
 
 function resetSms () {
@@ -178,7 +176,8 @@ function stopWorkout () {
 
   var questStop = window.confirm("Are you ready to end your workout?")
   if(questStop === true) {
-  let text = 'This is to notify you that *User Name* has ended their workout. Their final location is *Location* .'
+  
+    let text = 'This is to notify you that *User Name* has ended their workout. Their final location is *Location* .'
 
   vonage.message.sendSms(from, to, text, (err, responseData) => {
     if (err) {
@@ -193,6 +192,14 @@ function stopWorkout () {
     }
   })
 }
+//API CALL SAVE WORKOUT DETAILS
+
+  // API.saveSummary({
+  //   totalTime: time
+  //   activities: activities._id
+  // })
+  // .then(() =>  window.location.href =  '/dashboard' )
+  // .catch(err => console.log(err));
 
 }
 
