@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TimerDisplay from "../TimerDisplay"
 import TimerBtn from "../TimerBtn"
 import IconLabelButtons from "../Buttons"
+import Geolocate from "../Geolocation"
 import "./timer.css"
 
 //Geolocate function to address
@@ -22,6 +23,8 @@ let to = '*Contact Number*'
 
 
 function sendUpdate () {
+
+  window.confirm("Your current location has been sent to your contact")
   let text = 'This is a message from Relay: this is *username* current location: *Location*'
 
   vonage.message.sendSms(from, to, text, (err, responseData) => {
@@ -170,6 +173,28 @@ const reset = () => {
 
 const resume = () => start();
 
+//*Add in API to store workout*//
+function stopWorkout () {
+
+  var questStop = window.confirm("Are you ready to end your workout?")
+  if(questStop === true) {
+  let text = 'This is to notify you that *User Name* has ended their workout. Their final location is *Location* .'
+
+  vonage.message.sendSms(from, to, text, (err, responseData) => {
+    if (err) {
+      
+      console.log(err);
+    } else {
+      if (responseData.messages[0]['status'] === "0") {
+        console.log("Message sent successfully.");
+      } else {
+        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+      }
+    }
+  })
+}
+
+}
 
 
 return (
@@ -179,7 +204,7 @@ return (
         <TimerDisplay time={time} />
         <TimerBtn status={status} resume={resume} reset={reset} pause={pause} start={start} />
       </div>
-      <IconLabelButtons />
+      <IconLabelButtons stop={stopWorkout} update={sendUpdate}/>
     </div>
   </div>
 );

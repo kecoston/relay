@@ -67,23 +67,26 @@ class Geolocate extends React.Component {
 
         return (
             <div className="Geo">
-                <h2>Geolocation Example</h2>
+            {/* //     <h2>Geolocation Example</h2>
 
-                <button onClick={this.getLocation}>Get Coordinates</button>
-                <h4>HTML5 Coordinates</h4>
-                <ul>
-                    <li>Latitude: {this.state.latitude} </li>
-                    <li>Longitude: {this.state.longitude} </li>
-                </ul>
-                <h4> Google Maps Reverse Geocoding</h4>
-                <p>Address: {this.state.userAddress}</p>
-                {
+            //     <button onClick={this.getLocation}>Get Coordinates</button>
+            //     <h4>HTML5 Coordinates</h4>
+            //     <ul>
+            //         <li>Latitude: {this.state.latitude} </li>
+            //         <li>Longitude: {this.state.longitude} </li>
+            //     </ul>
+            //     <h4> Google Maps Reverse Geocoding</h4> */}
+            //     <p>Address: {this.state.userAddress}</p>
+            //     {
                     this.state.latitude && this.state.longitude ?
                     <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${this.state.latitude},${this.state.longitude}&zoom=14&size=400x300&sensor=false&markers=color:red%7C${this.state.latitude},${this.state.longitude}&key=${GOOGLE_API_KEY}`} alt="google-maps"/>
                     : 
                     null
                 }
             </div>
+
+
+          
         )
     }
 }
