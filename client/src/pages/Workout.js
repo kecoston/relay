@@ -4,7 +4,6 @@ import { Row, Col, Container } from "../components/Grid";
 import TimerBtn from "../components/TimerBtn";
 import Timer from "../components/Timer";
 import WorkoutDetails from "../components/WorkoutDetails"
-import Geolcoate from "../components/Geolocation"
 import API from "../utils/API"
 
 
@@ -31,7 +30,7 @@ function Workout() {
   
     console.log(currentActivity)
     console.log(contactId)
-    console.log(contact)
+    // console.log(contact)
 
 
     //     let interval = activities.interval
@@ -70,8 +69,7 @@ function Workout() {
                             <Timer />
                             <hr />
                             <TimerBtn />
-                            <hr /> 
-                            <Geolcoate />
+                          
                         </Jumbotron>
 
                     </Col>

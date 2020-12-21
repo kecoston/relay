@@ -13,29 +13,29 @@ const Vonage = require('@vonage/server-sdk')
 
 const vonage = new Vonage({
   apiKey: "044d053d",
-  apiSecret: VONAGE_SECRET
+  apiSecret: "WfSDx917aV4z19Lx"
 })
 
 let from = '14696913589'
-let to = '*CONTACT*'
+let to = '8327731981'
 
 
-function sendUpdate () {
-  let text = 'This is a message from Relay: this is *username* current location: *Location*'
+// function sendUpdate () {
+//   let text = 'This is a message from Relay: this is *username* current location: *Location*'
 
-  vonage.message.sendSms(from, to, text, (err, responseData) => {
-    if (err) {
+//   vonage.message.sendSms(from, to, text, (err, responseData) => {
+//     if (err) {
      
-      console.log(err);
-    } else {
-      if (responseData.messages[0]['status'] === "0") {
-        console.log("Message sent successfully.");
-      } else {
-        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-      }
-    }
-  })
-}
+//       console.log(err);
+//     } else {
+//       if (responseData.messages[0]['status'] === "0") {
+//         console.log("Message sent successfully.");
+//       } else {
+//         console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+//       }
+//     }
+//   })
+// }
 
 
 

@@ -40,14 +40,14 @@ class Geolocate extends React.Component {
         .then(data => this.setState({
             userAddress: data.results[0].formatted_address
         }))
-        .catch(error => alert(error))
+        .catch(error => alert("error"))
 
     }
 
     handleLocationError(error) {
         switch(error.code) {
             case error.PERMISSION_DENIED:
-             alert("User denied the request for Geolocation.")
+             alert("User denied the request for Geolocation, make sure your location is allowed in browser.")
               break;
             case error.POSITION_UNAVAILABLE:
               alert("Location information is unavailable.")
@@ -64,7 +64,6 @@ class Geolocate extends React.Component {
     render() {
 
 
-        console.log(GOOGLE_API_KEY)
 
         return (
             <div className="Geo">
