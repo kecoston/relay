@@ -64,7 +64,6 @@ export default function LogWorkout() {
             })}
           </div>
            )}
-           
           </Typography>
         </CardContent>
       </CardActionArea>
