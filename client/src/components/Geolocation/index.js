@@ -1,6 +1,5 @@
 import React from 'react';
-const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API;
-
+const GOOGLE_API_KEY = "AIzaSyBbDsRn9kjkZyKD1FIaMfzKVz-4GPHuHro"
 
 class Geolocate extends React.Component {
    
@@ -39,9 +38,10 @@ class Geolocate extends React.Component {
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&sensor=false&key=${GOOGLE_API_KEY}`)
         .then(response => response.json())
         .then(data => this.setState({
-            userAddress: data.results[0].formatted_address,
+            userAddress: data.results[0].formatted_address
         }))
         .catch(error => alert(error))
+
     }
 
     handleLocationError(error) {

@@ -4,6 +4,7 @@ import { Row, Col, Container } from "../components/Grid";
 import TimerBtn from "../components/TimerBtn";
 import Timer from "../components/Timer";
 import WorkoutDetails from "../components/WorkoutDetails"
+import Geolcoate from "../components/Geolocation"
 import API from "../utils/API"
 
 
@@ -70,6 +71,7 @@ function Workout() {
                             <hr />
                             <TimerBtn />
                             <hr /> 
+                            <Geolcoate />
                         </Jumbotron>
 
                     </Col>
