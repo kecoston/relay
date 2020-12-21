@@ -53,6 +53,7 @@ export default function TransitionsModal() {
             phoneNumber: formObject.phoneNumber
           })
             .then(handleClose)
+            .then(window.location.reload())
             .then(res => loadContacts())
             .catch(err => console.log(err));
         }
