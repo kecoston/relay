@@ -13,11 +13,11 @@ const Vonage = require('@vonage/server-sdk')
 
 const vonage = new Vonage({
   apiKey: "044d053d",
-  apiSecret: "WfSDx917aV4z19Lx"
+  apiSecret: "SECRET KEY"
 })
 
 let from = '14696913589'
-let to = '8327731981'
+let to = 'Contact Number'
 
 
 // function sendUpdate () {
