@@ -10,22 +10,23 @@ import API from "../utils/API"
 function Workout() {
 
     const [activities, setActivities] = useState([""]);
-    const [contact, setContact] = useState([""]);
+    const [contact, setContact] = useState();
     const currentActivity = activities[0]
     const contactId = currentActivity.contacts
 
-    useEffect((contactId) => {
-       
+    useEffect(() => {
+
         API.getActivities()
-            .then(res => setActivities(res.data)
-            )           
-        API.getContact(contactId)
-            .then(res =>
-                setContact (res.data)
-            )
-        .catch (err => console.log(err));
-   
-    }, []);
+          .then((res) => {
+            setActivities(res.data);
+            
+            API.getContact(activities)
+              .then((res) => setContact(res.data))
+              .catch((err) => console.log(err));
+          })
+          .catch((err) => console.log(err));
+          
+      }, []);
   
     console.log(currentActivity)
     console.log(contactId)
