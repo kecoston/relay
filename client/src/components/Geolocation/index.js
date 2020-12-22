@@ -1,8 +1,8 @@
-import React from 'react';
-const GOOGLE_API_KEY = "AIzaSyBbDsRn9kjkZyKD1FIaMfzKVz-4GPHuHro"
+import React, { useState } from 'react';
+const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API
 
 class Geolocate extends React.Component {
-   
+
 
     constructor(props) {
         super(props)
@@ -16,7 +16,7 @@ class Geolocate extends React.Component {
         this.reverseGeocodeCoordinates = this.reverseGeocodeCoordinates.bind(this)
     }
 
-    getLocation() {
+  getLocation() {
         console.log("click working")
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.getCoordinates, this.handleLocationError);            
@@ -63,8 +63,6 @@ class Geolocate extends React.Component {
 
     render() {
 
-
-
         return (
             <div className="Geo">
             {/* //     <h2>Geolocation Example</h2>
@@ -74,10 +72,10 @@ class Geolocate extends React.Component {
             //     <ul>
             //         <li>Latitude: {this.state.latitude} </li>
             //         <li>Longitude: {this.state.longitude} </li>
-            //     </ul>
-            //     <h4> Google Maps Reverse Geocoding</h4> */}
-            //     <p>Address: {this.state.userAddress}</p>
-            //     {
+            //     </ul>*/}
+                    <h4>RELAY LOCATION</h4>
+                <p>Your most recent Location: {this.state.userAddress}</p>
+               {
                     this.state.latitude && this.state.longitude ?
                     <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${this.state.latitude},${this.state.longitude}&zoom=14&size=400x300&sensor=false&markers=color:red%7C${this.state.latitude},${this.state.longitude}&key=${GOOGLE_API_KEY}`} alt="google-maps"/>
                     : 

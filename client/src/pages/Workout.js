@@ -11,6 +11,7 @@ function Workout() {
 
     const [activities, setActivities] = useState([""]);
     const [contact, setContact] = useState();
+    const [convertedInterval, setInterval] = useState();
     const currentActivity = activities[0]
     const contactId = currentActivity.contacts
 
@@ -32,20 +33,22 @@ function Workout() {
     console.log(contactId)
     // console.log(contact)
 
+    
+        // let interval = activities.interval
 
-    //     let interval = activities.interval
+        // if (interval === "00:05:00") {
+        //    let setInterval = 300000
+        // } if (interval === "00:10:00") {
+        //     let setInterval = 600000
+        // } if (interval === "00:20:00") {
+        //     let setInterval = 3600000
+        // }if (interval === "00:30:00") {
+        //     let setInterval = 1800000
+        // }if (interval === "01:00:00") {
+        //     let setInterval = 3600000
+        // } 
 
-    //     if (interval === "00:05:00") {
-    //         setInterval === 300000
-    //     } if (interval === "00:10:00") {
-    //         setInterval === 600000
-    //     } if (interval === "00:20:00") {
-    //         setInterval === 3600000
-    //     }if (interval === "00:30:00") {
-    //         setInterval === 1800000
-    //     }if (interval === "01:00:00") {
-    //         setInterval === 3600000
-    //     } 
+        // console.log(convertedInterval)
 
     return (
         <div>
@@ -59,7 +62,7 @@ function Workout() {
                             <WorkoutDetails
                                 key={currentActivity._id}
                                 title={currentActivity.title}
-                                interval={currentActivity.interval}
+                                interval={convertedInterval}
                             // firstName={contact.firstName}
                             // lastName={contact.lastName}
                             // phoneNumber={contact.phoneNumber}
