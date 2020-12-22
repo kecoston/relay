@@ -83,7 +83,9 @@ function Workout() {
 
                             />
                             <hr />
-                            <Timer />
+                            <Timer 
+                                phoneNumber={contact.phoneNumber}
+                            />
                             <hr />
                             <TimerBtn />
                           
