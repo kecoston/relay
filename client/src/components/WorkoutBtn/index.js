@@ -46,7 +46,8 @@ export default function WorkoutBtn() {
     const [formObject, setFormObject] = React.useState({
         title: "",
         interval: "",
-        selectedContact : null 
+        selectedContact: null 
+
     });
 
 
@@ -159,7 +160,7 @@ export default function WorkoutBtn() {
                             id="debug"
                             name="selectedContact" 
 
-                            value={formObject.contactId}
+                            value={formObject.selectedContact}
 
                             onChange={(event, newValue) => {
                                 console.log(newValue)
