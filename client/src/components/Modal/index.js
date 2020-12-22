@@ -53,6 +53,7 @@ export default function TransitionsModal() {
             phoneNumber: formObject.phoneNumber
           })
             .then(handleClose)
+            .then(window.location.reload())
             .then(res => loadContacts())
             .catch(err => console.log(err));
         }
@@ -68,7 +69,7 @@ export default function TransitionsModal() {
 
     return (
         <div>
-            <Button type="button" color="defaul" variant="outlined" onClick={handleOpen}>
+            <Button type="button" color="default" variant="outlined" onClick={handleOpen}>
                 Add Contact
             </Button>
             <Modal

@@ -67,6 +67,7 @@ export default function WorkoutBtn() {
     function handleInputChange(event) {
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value })
+        console.log(formObject)
     };
 
     const handleClickOpen = () => {
@@ -93,7 +94,7 @@ export default function WorkoutBtn() {
             API.saveActivities({
                 title: formObject.title,
                 interval: formObject.interval,
-                selectedContact: formObject.selectedContact._id
+                selectedContact: formObject.selectedContact
             })
                 .then(() =>  window.location.href =  '/workout' )
                 .catch(err => console.log(err));

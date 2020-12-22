@@ -12,5 +12,8 @@ router
     .put(summaryControllers.update)
     .delete(summaryControllers.remove);
 
+router 
+    .route("/id/activity")
+    .get(summaryControllers.findSummaryActivity);
 
 module.exports = router;

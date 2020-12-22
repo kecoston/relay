@@ -2,68 +2,221 @@ import React, { useState } from "react";
 import TimerDisplay from "../TimerDisplay"
 import TimerBtn from "../TimerBtn"
 import IconLabelButtons from "../Buttons"
+import Geolocate from "../Geolocation"
 import "./timer.css"
+import API from "../../utils/API";
 
-function Timer () {
 
-    const [time, setTime] = useState({ms:0, s:0, m:0, h:0});
-    const [interv, setInterv] = useState();
-    const [status, setStatus] = useState(0);
-    // Not started = 0
-    // started = 1
-    // stopped = 2
-  
-    const start = () => {
-      run();
-      setStatus(1);
-      setInterv(setInterval(run, 10));
-    };
-  
-    var updatedMs = time.ms, updatedS = time.s, updatedM = time.m, updatedH = time.h;
-  
-    const run = () => {
-      if(updatedM === 60){
-        updatedH++;
-        updatedM = 0;
+//Vonage requirements 
+const VONAGE_SECRET = process.env.REACT_APP_VONAGE_SECRET
+const Vonage = require('@vonage/server-sdk')
+
+const vonage = new Vonage({
+  apiKey: "044d053d",
+  apiSecret: "WfSDx917aV4z19Lx"
+})
+
+let from = '14696913589'
+let to = '*Contact Number*'
+
+
+
+function sendUpdate () {
+
+  window.confirm("Your current location has been sent to your contact")
+  let text = 'This is a message from Relay: this is *username* current location: *Location*'
+
+  vonage.message.sendSms(from, to, text, (err, responseData) => {
+    if (err) {
+     
+      console.log(err);
+    } else {
+      if (responseData.messages[0]['status'] === "0") {
+        console.log("Message sent successfully.");
+      } else {
+        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
       }
-      if(updatedS === 60){
-        updatedM++;
-        updatedS = 0;
+    }
+  })
+}
+
+
+
+function Timer() {
+
+const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
+const [interv, setInterv] = useState();
+const [status, setStatus] = useState(0);
+// Not started = 0
+// started = 1
+// stopped = 2
+
+
+const beginInterval = () => {
+  setInterval(testing, 3000)
+}
+
+function testing () {
+  console.log("Test")
+}
+
+const start = () => {
+  run();
+  setStatus(1);
+  setInterv(setInterval(run, 10));
+  startSMS()
+  beginInterval()
+};
+
+function startSMS () {
+  let text = 'This message is from Relay!  It is to notify you that *User Name* has begun a workout. Their starting location is: *Location*'
+
+  vonage.message.sendSms(from, to, text, (err, responseData) => {
+    if (err) {
+     
+      console.log(err);
+    } else {
+      if (responseData.messages[0]['status'] === "0") {
+        console.log("Message sent successfully.");
+      } else {
+        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
       }
-      if(updatedMs === 100){
-        updatedS++;
-        updatedMs = 0;
-      }
-      updatedMs++;
-      return setTime({ms:updatedMs, s:updatedS, m:updatedM, h:updatedH});
-    };
-  
-    const pause = () => {
-      clearInterval(interv);
-      setStatus(2);
-    };
-  
-    const reset = () => {
-      clearInterval(interv);
-      setStatus(0);
-      setTime({ms:0, s:0, m:0, h:0})
-    };
-  
-    const resume = () => start();
-  
-  
-    return (
-      <div className="main-section">
-       <div className="clock-holder">
-            <div className="stopwatch">
-                 <TimerDisplay time={time}/>
-                 <TimerBtn status={status} resume={resume} reset={reset} pause={pause} start={start}/>
-            </div>
-            <IconLabelButtons />
-       </div>
-      </div>
-    );
+    }
+  })
+
+}
+
+var updatedMs = time.ms, updatedS = time.s, updatedM = time.m, updatedH = time.h;
+
+const run = () => {
+  if (updatedM === 60) {
+    updatedH++;
+    updatedM = 0;
   }
+  if (updatedS === 60) {
+    updatedM++;
+    updatedS = 0;
+  }
+  if (updatedMs === 100) {
+    updatedS++;
+    updatedMs = 0;
+  }
+  updatedMs++;
+  return setTime({ ms: updatedMs, s: updatedS, m: updatedM, h: updatedH });
+};
+
+
+
+function pauseSMS () {
+   
+  var questPause = window.confirm("Would you like to notify your contact that you have paused your workout?");
   
-  export default Timer;
+  if (questPause === true) {
+  let text = 'This is to notify you that *User Name* has paused their workout. They are located here: *Location*'
+
+  vonage.message.sendSms(from, to, text, (err, responseData) => {
+    if (err) {
+      
+      console.log(err);
+    } else {
+      if (responseData.messages[0]['status'] === "0") {
+        console.log("Message sent successfully.");
+      } else {
+        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+      }
+    }
+  })
+}
+
+}
+
+const pause = () => {
+  clearInterval(interv);
+  setStatus(2);
+  pauseSMS()
+  clearInterval(beginInterval)
+};
+
+function resetSms () {
+
+  var questRest = window.confirm("Would you like to notify your contact that you have reset your workout?")
+  if(questRest === true) {
+  let text = 'This is to notify you that *User Name* has reset their workout timeclock.'
+
+  vonage.message.sendSms(from, to, text, (err, responseData) => {
+    if (err) {
+      
+      console.log(err);
+    } else {
+      if (responseData.messages[0]['status'] === "0") {
+        console.log("Message sent successfully.");
+      } else {
+        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+      }
+    }
+  })
+}
+}
+
+
+const reset = () => {
   
+  clearInterval(interv);
+  setStatus(0);
+  setTime({ ms: 0, s: 0, m: 0, h: 0 })
+  resetSms()
+  beginInterval()
+
+};
+
+const resume = () => start();
+
+//*Add in API to store workout*//
+function stopWorkout () {
+
+  var questStop = window.confirm("Are you ready to end your workout?")
+  if(questStop === true) {
+  
+    let text = 'This is to notify you that *User Name* has ended their workout. Their final location is *Location* .'
+
+  vonage.message.sendSms(from, to, text, (err, responseData) => {
+    if (err) {
+      
+      console.log(err);
+    } else {
+      if (responseData.messages[0]['status'] === "0") {
+        console.log("Message sent successfully.");
+      } else {
+        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+      }
+    }
+  })
+}
+//API CALL SAVE WORKOUT DETAILS
+
+  // API.saveSummary({
+  //   totalTime: time
+  //   activities: activities._id
+  // })
+  // .then(() =>  window.location.href =  '/dashboard' )
+  // .catch(err => console.log(err));
+
+}
+
+
+return (
+  <div className="main-section">
+    <div className="clock-holder">
+      <div className="stopwatch">
+        <TimerDisplay time={time} />
+        <TimerBtn status={status} resume={resume} reset={reset} pause={pause} start={start} />
+      </div>
+      <IconLabelButtons stop={stopWorkout} update={sendUpdate}/>
+    </div>
+  </div>
+);
+
+}
+
+
+export default Timer;

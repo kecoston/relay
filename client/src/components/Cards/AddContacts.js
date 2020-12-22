@@ -4,10 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Contact from '../Contact/Contact'
-import API from '../../utils/API'
-import TransitionsModal from "../Modal"
-
+import Contact from '../Contact/Contact';
+import TransitionsModal from "../Modal";
 
 const useStyles = makeStyles({
   root: {
@@ -25,20 +23,6 @@ const useStyles = makeStyles({
 export default function AddContacts() {
   const classes = useStyles();
 
-  const [contacts, setContacts] = useState("");
-
-  useEffect(() => {
-   loadContacts()
-  }, []);
-
-  function loadContacts() {
-    API.getContacts()
-    .then(res =>
-      setContacts(res.data)
-      )
-      .catch(err => console.log(err));
-  };
-
   return (
 
     <Card className={classes.root}>
@@ -48,24 +32,7 @@ export default function AddContacts() {
             My Contacts
           </Typography>
           <hr />
-          <Typography variant="body2" color="textSecondary" component="span">
-         {!contacts ? (
-           <h1>No Contacts to Display</h1>
-         ) : ( 
-          <div>
-          {contacts.map(contact => {
-           return (
-            <Contact 
-            key={contact._id} 
-            firstName={contact.firstName} 
-            lastName={contact.lastName} 
-            phoneNumber={contact.phoneNumber}
-            />
-           );
-         })}
-      </div> 
-       )}
-          </Typography>
+          <Contact />
         </CardContent>
       </CardActionArea>
       <TransitionsModal />

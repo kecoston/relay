@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function IconLabelButtons() {
+export default function IconLabelButtons(props) {
     const classes = useStyles();
 
     return (
@@ -22,7 +22,7 @@ export default function IconLabelButtons() {
                 <IconButton
                     color="primary"
                     size="large"
-                    onClick={() => { console.log('sending location') }}
+                    onClick={props.update}
                 >
                     <SendOutlinedIcon />
                 </IconButton>
@@ -51,7 +51,7 @@ export default function IconLabelButtons() {
                 color="secondary"
                 size="large"
                 className={classes.button}
-                onClick={() => { console.log('ending workout') }}
+                onClick={props.stop} 
             >
                 End Workout
       </Button>

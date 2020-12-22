@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,6 +11,7 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import moment from 'moment'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +47,7 @@ export default function Activity({
   interval,
   contactId
 }) {
+
   const classes = useStyles();
 
   const [expanded, setExpanded] = React.useState(false);
@@ -53,6 +55,7 @@ export default function Activity({
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
 
   return (
     <div className={classes.root}>
@@ -72,7 +75,7 @@ export default function Activity({
                   <DirectionsRunIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary= {title} secondary= {date}/>
+              <ListItemText primary= {title} secondary={moment(date).format('MMM Do YYYY, h:mm:ss a')}/>
             </ListItem>
           </List>
         </AccordionSummary>

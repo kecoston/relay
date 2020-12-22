@@ -9,5 +9,4 @@ router.use("/activities", activitiesRoutes);
 router.use("/contacts", contactsRoutes);
 router.use("/summary", summaryRoutes);
 
-
 module.exports = router;
