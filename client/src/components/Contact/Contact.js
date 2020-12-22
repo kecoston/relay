@@ -51,7 +51,6 @@ export default function Contact() {
       {contacts.length ? (
       <List className={classes.root}>
         {contacts.map(contacts => (
-          console.log(contacts),
         <ListItem key={contacts._id}>
           <ListItemAvatar>
             <Avatar>

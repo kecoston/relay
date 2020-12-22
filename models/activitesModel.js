@@ -22,7 +22,7 @@ const activitiesSchema = new mongoose.Schema({
     }],
     contacts: [{
         type: Schema.Types.ObjectId,
-        ref: "contact Id"
+        ref: "contactId"
     }]
 
 });

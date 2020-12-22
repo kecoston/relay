@@ -10,28 +10,43 @@ import API from "../utils/API"
 function Workout() {
 
     const [activities, setActivities] = useState([""]);
-    const [contact, setContact] = useState();
+    const [contact, getContact] = useState([""]);
     const currentActivity = activities[0]
-    const contactId = currentActivity.contacts
-
+    let contactId = currentActivity.contacts
+    
+    
     useEffect(() => {
-
+    
         API.getActivities()
-          .then((res) => {
-            setActivities(res.data);
-            
-            API.getContact(activities)
-              .then((res) => setContact(res.data))
-              .catch((err) => console.log(err));
-          })
-          .catch((err) => console.log(err));
-          
-      }, []);
-  
+          .then(res => 
+            setActivities(res.data)
+          ).catch((err) => console.log(err))    
+    }, []);
+    
+    useEffect(() => {
+          // Do nothing when contactId is not defined
+          if(!contactId) return;
+          API.getContact(contactId)
+          .then(res => 
+            getContact(res.data) // I also modified this line. It was updating the activities in your snippet
+          ).catch((err) => console.log(err))
+    
+    }, [contactId]); // This effect will be run every time the contactId changes
+    
+    
     console.log(currentActivity)
     console.log(contactId)
     console.log(contact)
-
+    // function findContact(contact) {
+    //     for (var i = 0; i < contact.length; i++) {
+    //         if (contact[i]._id === contactId) {
+    //             let newContact = contact[i]
+    //             return console.log(newContact)
+    //         }
+    //         else continue 
+        
+    //     }
+    // }
     
         // let interval = activities.interval
 
@@ -62,9 +77,9 @@ function Workout() {
                                 key={currentActivity._id}
                                 title={currentActivity.title}
                                 interval={currentActivity.interval}
-                            // firstName={contact.firstName}
-                            // lastName={contact.lastName}
-                            // phoneNumber={contact.phoneNumber}
+                                firstName={contact.firstName}
+                                lastName={contact.lastName}
+                                phoneNumber={contact.phoneNumber}
 
                             />
                             <hr />

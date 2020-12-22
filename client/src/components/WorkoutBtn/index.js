@@ -46,7 +46,7 @@ export default function WorkoutBtn() {
     const [formObject, setFormObject] = React.useState({
         title: "",
         interval: "",
-        contactId: null 
+        selectedContact: null 
     });
 
 
@@ -159,11 +159,11 @@ export default function WorkoutBtn() {
                             id="debug"
                             name="selectedContact" 
 
-                            value={formObject.contactId}
+                            value={formObject.selectedContact}
 
                             onChange={(event, newValue) => {
                                 console.log(newValue)
-                                setFormObject({...formObject, contactId:newValue});
+                                setFormObject({...formObject, selectedContact:newValue});
                               }}
 
                             renderInput={(params) => <TextField {...params} label="Select Contact" margin="normal" />}
