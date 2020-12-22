@@ -9,46 +9,30 @@ import "./timer.css"
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API
 
 //Vonage requirements 
-const VONAGE_SECRET = process.env.REACT_APP_VONAGE_SECRET
+// const VONAGE_SECRET = process.env.REACT_APP_VONAGE_SECRET
 const Vonage = require('@vonage/server-sdk')
 
 const vonage = new Vonage({
   apiKey: "044d053d",
-  apiSecret: VONAGE_SECRET
+  apiSecret: "WfSDx917aV4z19Lx"
 })
 
 let from = '14696913589'
-let to = '8327731981'
+let to = '13253158959'
 
 
 
-function sendUpdate () {
 
-  window.confirm("Your current location has been sent to your contact")
-  
-  let text = 'This is a message from Relay: this is *username* current location: *Location*'
-
-  vonage.message.sendSms(from, to, text, (err, responseData) => {
-    if (err) {
-     
-      console.log(err);
-    } else {
-      if (responseData.messages[0]['status'] === "0") {
-        console.log("Message sent successfully.");
-      } else {
-        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
-      }
-    }
-  })
-
-}
 
 
 
 function Timer() {
 
+  
+
 useEffect(() => {
   getLocation()
+  
 }, [])
 
 //Geolocate 
@@ -62,7 +46,7 @@ const [longitude, setLongitude] = useState([""]);
 function getLocation() {
   console.log("started geolocate")
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.watchPosition(showPosition);
   } else {
     console.log("Geolocation is not supported by this browser.");
   }
@@ -111,12 +95,62 @@ const [status, setStatus] = useState(0);
 // stopped = 2
 
 const beginInterval = () => {
-  setInterval(testing, 3000)
+  setInterval(sendUpdate, 60000)
 }
 
-function testing () {
-    getLocation()
-  console.log("Test")
+// function testing () {
+//     getLocation()
+//   .then(() => {
+//     sendUpdate()
+//   }).catch(err => console.log("Update Not Sent"))
+// }
+
+const stopInter = () => {
+  clearInterval(beginInterval)
+}
+
+function sendUpdate () {
+  
+  getLocation()
+
+  let text = `This is a message from Relay: this is *username* current latitude: ${latitude}, longitude: ${longitude}`
+
+  vonage.message.sendSms(from, to, text, (err, responseData) => {
+    if (err) {
+     
+      console.log(err);
+    } else {
+      if (responseData.messages[0]['status'] === "0") {
+        console.log("Message sent successfully.");
+      } else {
+        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+      }
+    }
+  })
+
+}
+
+function quickSend () {
+
+  getLocation()
+
+  window.confirm("Your current location has been sent to your contact")
+  
+  let text = `This is a message from Relay: this is *username* current latitude: ${latitude},longitude: ${longitude}`
+
+  vonage.message.sendSms(from, to, text, (err, responseData) => {
+    if (err) {
+     
+      console.log(err);
+    } else {
+      if (responseData.messages[0]['status'] === "0") {
+        console.log("Message sent successfully.");
+      } else {
+        console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+      }
+    }
+  })
+
 }
 
 const start = () => {
@@ -128,7 +162,10 @@ const start = () => {
 };
 
 function startSMS () {
-  let text = 'This message is from Relay!  It is to notify you that *User Name* has begun a workout. Their starting location is: *Location*'
+
+  getLocation()
+
+  let text = `This message is from Relay!  It is to notify you that *User Name* has begun a workout. Their starting location is latitude: ${latitude}, longitude: ${longitude}`
 
   vonage.message.sendSms(from, to, text, (err, responseData) => {
     if (err) {
@@ -167,11 +204,13 @@ const run = () => {
 
 
 function pauseSMS () {
+
+  getLocation()
    
   var questPause = window.confirm("Would you like to notify your contact that you have paused your workout?");
   
   if (questPause === true) {
-  let text = 'This is to notify you that *User Name* has paused their workout. They are located here: *Location*'
+  let text =  `This is to notify you that *User Name* has paused their workout. They are located here latitude: ${latitude}, longitude: ${longitude}`
 
   vonage.message.sendSms(from, to, text, (err, responseData) => {
     if (err) {
@@ -193,10 +232,19 @@ const pause = () => {
   clearInterval(interv);
   setStatus(2);
   pauseSMS()
-  clearInterval(beginInterval)
+  stopInter()
 };
 
+const end = () => {
+  clearInterval(interv);
+  setStatus(2);
+  stopInter()
+}
+
+
 function resetSms () {
+
+  getLocation()
 
   var questRest = window.confirm("Would you like to notify your contact that you have reset your workout?")
   if(questRest === true) {
@@ -233,10 +281,13 @@ const resume = () => start();
 //*Add in API to store workout*//
 function stopWorkout () {
 
+  getLocation()
+  end()
+
   var questStop = window.confirm("Are you ready to end your workout?")
   if(questStop === true) {
   
-    let text = 'This is to notify you that *User Name* has ended their workout. Their final location is *Location* .'
+    let text = `This is to notify you that *User Name* has ended their workout. Their final location is latitude: ${latitude}, longitude: ${longitude}`
 
   vonage.message.sendSms(from, to, text, (err, responseData) => {
     if (err) {
@@ -270,7 +321,7 @@ return (
         <TimerDisplay time={time} />
         <TimerBtn status={status} resume={resume} reset={reset} pause={pause} start={start} />
       </div>
-      <IconLabelButtons stop={stopWorkout} update={sendUpdate}/>
+      <IconLabelButtons stop={stopWorkout} quick={quickSend}/>
     </div>
    
     <Geolocate 

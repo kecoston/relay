@@ -22,7 +22,7 @@ export default function IconLabelButtons(props) {
                 <IconButton
                     color="primary"
                     size="large"
-                    onClick={props.update}
+                    onClick={props.quick}
                 >
                     <SendOutlinedIcon />
                 </IconButton>
