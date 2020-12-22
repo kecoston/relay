@@ -11,7 +11,6 @@ function Workout() {
 
     const [activities, setActivities] = useState([""]);
     const [contact, setContact] = useState();
-    const [convertedInterval, setInterval] = useState();
     const currentActivity = activities[0]
     const contactId = currentActivity.contacts
 
@@ -31,7 +30,7 @@ function Workout() {
   
     console.log(currentActivity)
     console.log(contactId)
-    // console.log(contact)
+    console.log(contact)
 
     
         // let interval = activities.interval
@@ -62,7 +61,7 @@ function Workout() {
                             <WorkoutDetails
                                 key={currentActivity._id}
                                 title={currentActivity.title}
-                                interval={convertedInterval}
+                                interval={currentActivity.interval}
                             // firstName={contact.firstName}
                             // lastName={contact.lastName}
                             // phoneNumber={contact.phoneNumber}

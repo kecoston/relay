@@ -7,7 +7,7 @@ const routes = require("./routes")
 const app = express();
 const webpush= require("web-push")
 const PORT = process.env.PORT || 3001;
-
+// const bodyParser = require("body-parser")
 
 const cors = require("cors")
 
@@ -15,6 +15,10 @@ const cors = require("cors")
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
 
+// app.use(bodyParser.json());
+// app.get("/", (req, res) => {
+// res.status(200).json({ message: "Hello express" });
+// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -23,8 +27,18 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use(cors);
-
+app.use(
+  cors({
+      origin: "http://localhost:3000/",
+      methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
+      credentials: true
+  })
+);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://lhrlslacktest.ngrok.io");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
 
 //Add routes, both API and view 
 app.use(routes)
@@ -40,7 +54,7 @@ mongoose.connect(
     }
   );
   
-//*****************Push notification Route *******************//
+    //*****************Push notification Route *******************//
 const publicVapidKey ="BJxZEJV0NApSurj1ULkPZ6SoJmHwrUSR3-JyaZPhgillhEWA8OYPv_87MRSsHSHp7kxHYd3K4iwfkkQUo5YuFOg";
 const privateVapidKey = "czgh1Jk372D7wsX7H4JhUORT3blHNFOmPbx7-EMcHy0";
 
@@ -48,7 +62,8 @@ webpush.setVapidDetails("mailto:test@test.com",
 
 publicVapidKey,privateVapidKey);
 app.post("/subscribe", (req, res) => {
-const { subscription, title, message } = req.body;
+
+  const { subscription, title, message } = req.body;
 const payload = JSON.stringify({ title, message });
 
 webpush.sendNotification(subscription, payload)
@@ -56,8 +71,7 @@ webpush.sendNotification(subscription, payload)
 res.status(200).json({ success: true });
 });
 
-
-
+ 
   // Send every request to the React app
   // Define any API routes before this runs
   app.get("*", function(req, res) {
@@ -67,4 +81,3 @@ res.status(200).json({ success: true });
   app.listen(PORT, function() {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
-

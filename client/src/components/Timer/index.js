@@ -4,12 +4,12 @@ import TimerBtn from "../TimerBtn"
 import IconLabelButtons from "../Buttons"
 import Geolocate from "../Geolocation"
 import "./timer.css"
-import API from "../../utils/API";
+// import API from "../../utils/API";
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API
 
 //Vonage requirements 
-const VONAGE_SECRET = "abcd"
+const VONAGE_SECRET = process.env.REACT_APP_VONAGE_SECRET
 const Vonage = require('@vonage/server-sdk')
 
 const vonage = new Vonage({

@@ -81,7 +81,7 @@ export default function Activity({
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            On {date} you went for a insert time run and set {contactId} as
+            On {moment(date).format('MMM Do YYYY, h:mm:ss a')} you went for a insert time run and set {contactId} as
             your emergency contact. You had messages sent to them every {interval}.
           </Typography>
         </AccordionDetails>
