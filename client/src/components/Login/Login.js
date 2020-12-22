@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOpenRoundedIcon from '@material-ui/icons/LockOpenRounded';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-//import logo from "./relaylogo2.png";
+import logo from "./relaylogo2.png";
 
 function Copyright() {
   return (
@@ -29,6 +29,14 @@ function Copyright() {
 const styles = theme => ({
   root: {
     height: '100vh',
+  },
+  image: {
+    backgroundImage: 'url(https://source.unsplash.com/1600x900/?run)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -105,6 +113,7 @@ class Login extends Component {
               <Grid item xs={false} sm={4} md={7} className={classes.image} />
               <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                 <div className={classes.paper}>
+                  <img src={logo} alt="logo" style={{width: 250, marginBottom: -50, marginTop: -75}} />
                   <Avatar className={classes.avatar}>
                     <LockOpenRoundedIcon />
                   </Avatar>
@@ -154,6 +163,10 @@ class Login extends Component {
                       <Copyright />
                     </Box>
                   </form>
+                  <br />
+                  <Link href="/dashboard" style={{fontSize: 30}}>
+                    {"Demo"}
+                  </Link>
                 </div>
               </Grid>
             </Grid>
