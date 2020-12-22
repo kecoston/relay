@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
+
 export default function IconLabelButtons(props) {
     const classes = useStyles();
 
@@ -28,13 +31,13 @@ export default function IconLabelButtons(props) {
                 </IconButton>
             </Tooltip>
             <Tooltip title="Call Contact" arrow>
-                <IconButton
+            <a href="tel:13253158959"><IconButton
                     color="primary"
                     size="large"
-                    onClick={() => { console.log('calling contact') }}
+                    onClick={() => {console.log('calling contact') }}
                 >
                     <PhoneForwardedOutlinedIcon />
-                </IconButton>
+                </IconButton></a>
             </Tooltip>
             <Tooltip title="Take Photo" arrow>
                 <IconButton

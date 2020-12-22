@@ -8,10 +8,10 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+  Card: {
+    alignItems: "center",
+    direction: "column",
+    justifyContent: "center",
   },
   title: {
     fontSize: 14,
@@ -22,11 +22,11 @@ const useStyles = makeStyles({
 });
 
 export default function WorkoutDetails({
-    interval, 
-    firstName,
-    lastName, 
-    phoneNumber,
-    title,
+        interval, 
+        firstName,
+        lastName, 
+        phoneNumber,
+        title,
 }) {
   const classes = useStyles();
 
@@ -34,17 +34,21 @@ export default function WorkoutDetails({
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Workout Details: {title} 
+      Workout Details
+      </Typography>
+        <Typography variant="h5" component="h2">
+          Workout Title: {title} 
+        </Typography>
+        <Typography className={classes.pos} color="textSecondary">
+          Relay Interval: {interval}
         </Typography>
         <Typography variant="body2" component="p">
           Emergency Contact: {firstName} {lastName}
           <br />
-          Emergency Contact Phone Number: {phoneNumber}
-          Message Interval: {interval}
-          <br />
+          {`Emergency Phone Number: ${phoneNumber}`}
         </Typography>
       </CardContent>
-     
+
     </Card>
   );
 }

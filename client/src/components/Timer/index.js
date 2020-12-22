@@ -301,6 +301,8 @@ function stopWorkout () {
       }
     }
   }) 
+  
+  window.location.href = '/dashboard'
 }
 //API CALL SAVE WORKOUT DETAILS
 
