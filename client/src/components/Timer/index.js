@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TimerDisplay from "../TimerDisplay"
 import TimerBtn from "../TimerBtn"
 import IconLabelButtons from "../Buttons"
@@ -47,11 +47,13 @@ function sendUpdate () {
 
 function Timer() {
 
+useEffect(() => {
+  getLocation()
+}, [])
 
 //Geolocate 
 const [latitude, setLatitude] = useState([""]);
 const [longitude, setLongitude] = useState([""]);
-const [userAddress, setAddress] = useState([""]);
 
 // this.getLocation = this.getLocation.bind(this);
 // this.getCoordinates = this.getCoordinates.bind(this)
@@ -70,40 +72,36 @@ function showPosition(position) {
   setLatitude(position.coords.latitude)
   setLongitude(position.coords.longitude)
   console.log(position.coords.latitude, position.coords.longitude)
-
-  if (this.latitude && this.longitude !== undefined) {
-    reverseGeocodeCoordinates()
-  }
 }
 
 
 
-function reverseGeocodeCoordinates() {
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&sensor=false&key=${GOOGLE_API_KEY}`)
-    .then(response => response.json())
-    .then(data => this.setAddress({
-        userAddress: data.results[0].formatted_address
-    }))
-    .catch(error => alert("error"))
+// function reverseGeocodeCoordinates() {
+//     fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&sensor=false&key=${GOOGLE_API_KEY}`)
+//     .then(response => response.json())
+//     .then(data => this.setAddress({
+//         userAddress: data.results[0].formatted_address
+//     }))
+//     .catch(error => alert("error"))
 
-}
+// }
 
-function handleLocationError(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-         alert("User denied the request for Geolocation, make sure your location is allowed in browser.")
-          break;
-        case error.POSITION_UNAVAILABLE:
-          alert("Location information is unavailable.")
-          break;
-        case error.TIMEOUT:
-          alert("The request to get user location timed out.")
-          break;
-        case error.UNKNOWN_ERROR:
-          alert("An unknown error occurred.")
-          break;
-      }
-}
+// function handleLocationError(error) {
+//     switch(error.code) {
+//         case error.PERMISSION_DENIED:
+//          alert("User denied the request for Geolocation, make sure your location is allowed in browser.")
+//           break;
+//         case error.POSITION_UNAVAILABLE:
+//           alert("Location information is unavailable.")
+//           break;
+//         case error.TIMEOUT:
+//           alert("The request to get user location timed out.")
+//           break;
+//         case error.UNKNOWN_ERROR:
+//           alert("An unknown error occurred.")
+//           break;
+//       }
+// }
 
 const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
 const [interv, setInterv] = useState();
@@ -274,11 +272,12 @@ return (
       </div>
       <IconLabelButtons stop={stopWorkout} update={sendUpdate}/>
     </div>
+   
     <Geolocate 
-    userAddress={userAddress}
     latitude={latitude}
     longitude={longitude}
     />
+   
   </div>
 );
 
