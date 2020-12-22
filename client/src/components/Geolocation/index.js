@@ -49,8 +49,6 @@ function Geolocate({
             <div className="Geo">
                         <h4>RELAY LOCATION</h4>
 
-                <p>Your Address: {userAddress}</p>
-
                  <p>Your Coordinates</p>
              
                      <p>Latitude: {latitude} </p>
