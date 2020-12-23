@@ -40,7 +40,7 @@ Your app should now be running on <http://localhost:3000>. The Express server sh
 
 
 ## Contributing
-Relay was developed by Kathrn Sherazi & Zack White.
+Relay was developed by Kathryn Sherazi & Zack White.
 
 ## License
 Unlicense
