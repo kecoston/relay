@@ -12,6 +12,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import moment from 'moment'
+import API from "../../utils/API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,11 +46,19 @@ export default function Activity({
   title,
   date,
   interval,
-  contactId
+  contacts,
 }) {
 
-  const classes = useStyles();
+useEffect((contacts) => {
+  API.getContact(contacts)
+  .then(res => 
+    getContact(res.data) 
+  ).catch((err) => console.log(err))
 
+}, []) 
+
+  const classes = useStyles();
+  const [contact, getContact] = React.useState()
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -81,7 +90,7 @@ export default function Activity({
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            On {moment(date).format('MMM Do YYYY, h:mm:ss a')} you went for a insert time run and set {contactId} as
+            On {moment(date).format('MMM Do YYYY, h:mm:ss a')} you went for a insert time run and set {contact.firstName} as
             your emergency contact. You had messages sent to them every {interval}.
           </Typography>
         </AccordionDetails>
